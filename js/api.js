@@ -57,6 +57,7 @@ function Googlemap() {
         avoidTolls: true,
         drivingOptions: {
             departureTime: new Date( /* now, or future date */ ),
+            trafficModel: "pessimistic",
         },
     };
     directionsService.route(request, function(result, status) {
@@ -75,11 +76,22 @@ function Googlemap() {
         avoidTolls: true,
         drivingOptions: {
             departureTime: new Date( /* now, or future date */ ),
+            trafficModel: "pessimistic",
+            //best_guess ※デフォルト
+            //正確に予測
+            //⇒リクエストされた時刻や曜日に関連する過去のデータやリアルタイムの交通状況に基づいて、最適な移動時間が算出されます。
+
+            //optimistic
+            //楽観的に予測
+
+            //pessimistic
+            //悲観的に予測
+
         },
     };
-    directionsService.route(request, function(result, status) {
+    directionsService.route(request, function(result2, status) {
             if (status == 'OK') {
-                console.log(result.routes[0].summary, result.routes[0].legs[0].duration, result.routes[0].legs[0].duration_in_traffic);
+                console.log(result2.routes[0].summary, result2.routes[0].legs[0].duration, result2.routes[0].legs[0].duration_in_traffic);
                 //Math.floor(Math.round(value/60)/ 60)時間
                 //Math.floor(Math.round(value/60)% 60)f分
             }
