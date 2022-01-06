@@ -47,3 +47,17 @@ function contents1() {
     })
 
 }
+
+function plays(num) {
+    let music;
+    switch (num) {
+        case 1:
+            music = new Audio('./audio/Zihou01-1.mp3');
+            break
+        case 2:
+            music = new Audio('./audio/Phrase03-1.mp3');
+    }
+
+    music.volume = .5;
+    music.play();
+}

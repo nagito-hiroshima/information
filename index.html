@@ -23,6 +23,7 @@
             <h1>ドライバー向け情報案内</h1>
             <span id="view_clock"></span>
             <script type="text/javascript">
+                let flg = false;
                 timerID = setInterval('clock()', 500); //0.5秒毎にclock()を実行
 
                 function clock() {
@@ -30,14 +31,22 @@
                 }
 
                 function getNow() {
-                    var now = new Date();
-                    var year = now.getFullYear();
-                    var mon = now.getMonth() + 1; //１を足すこと
-                    var day = now.getDate();
-                    var hour = now.getHours();
-                    var min = now.getMinutes();
+                    let now = new Date();
+                    let year = now.getFullYear();
+                    let mon = now.getMonth() + 1; //１を足すこと
+                    let day = now.getDate();
+                    let hour = now.getHours();
+                    let min = now.getMinutes();
+                    let sec = now.getSeconds();
+
                     if (min <= 9) {
                         min = "0" + min
+                        flg = false
+                    }
+                    if (min == "59" && flg == false && sec == "57") {
+                        plays(1);
+                        flg = true;
+
                     }
                     //出力用
                     var s = '<div class="date">' + year + "年" + mon + "月" + day + "日" + '</div><div class="times">' + hour + "時" + min + "分" + '</div>';
@@ -145,11 +154,16 @@
                         },
                     }).then((result) => {
                         if (result.isConfirmed) {
+                            plays(2);
                             Swal.fire({
                                 icon: 'success',
                                 title: '承認しました',
                             }).then((result) => {
+                                //初回起動コード！！！
+                                //!!!!!!!!!!
+                                //!!!!!!!!!
                                 contents1();
+
                             })
                             document.body.requestFullscreen();
                         }
