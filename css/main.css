@@ -19,6 +19,8 @@
 /* 全体を囲うコンテナー＆背景 */
 
 .container {
+    user-select: none;
+    pointer-events: none;
     position: relative;
     background-image: url('../img/back.png');
     background-repeat: no-repeat;
