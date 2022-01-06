@@ -47,5 +47,3 @@ function contents1() {
     })
 
 }
-
-contents1();

@@ -7,12 +7,20 @@
     margin: 0;
 }
 
+.look {
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    min-height: 100vh;
+    width: 100%;
+}
+
 
 /* 全体を囲うコンテナー＆背景 */
 
 .container {
     position: relative;
-    background-image: url('/img/back.png');
+    background-image: url('../img/back.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -25,11 +33,11 @@
 
 .title {
     padding-top: 20px;
-    font-size: 60px;
+    font-size: 45px;
     display: flex;
     align-items: center;
     justify-content: center;
-    -webkit-text-stroke: 3px #FFF;
+    -webkit-text-stroke: 2px #FFF;
 }
 
 #view_clock {
@@ -51,26 +59,26 @@
     position: absolute;
     margin: 20px;
     background: rgba(255, 255, 255, 0.7);
-    width: 1880px;
-    height: 960px;
+    width: 1240px;
+    height: 550px;
     border-radius: 10px;
 }
 
 h2 {
     margin: 10px 40px;
-    font-size: 110px;
+    font-size: 65px;
 }
 
 .subtitle {
     align-items: center;
     display: flex;
-    font-size: 70px;
+    font-size: 50px;
 }
 
 .average {
     display: flex;
-    margin-top: 20px;
-    margin-left: 90px;
+    margin-top: 10px;
+    margin-left: 50px;
 }
 
 #max,
@@ -94,11 +102,10 @@ h2 {
 }
 
 .box2 {
-    padding-top: 20px;
     margin: 20px;
-    width: 800px;
-    height: 600px;
-    font-size: 80px;
+    width: 400px;
+    height: 350px;
+    font-size: 40px;
 }
 
 .day {
@@ -117,8 +124,8 @@ h2 {
 
 .publishing {
     display: flex;
-    font-size: 40px;
-    margin-top: 50px;
+    font-size: 30px;
+    margin-top: 0px;
     margin-right: 20px;
     justify-content: right;
 }
