@@ -8,6 +8,9 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGnPJXJJCEeXY6VvQeu_l1kbQez9qKceo"></script>
     <script src="./js/suncalc.js" type="text/javascript"></script>
     <script src="./js/api.js" type="text/javascript"></script>
+    <script src="./js/view.js" type="text/javascript"></script>
+    <script src="./js/weathercode.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="./css/main.css">
 
 
 
@@ -15,8 +18,105 @@
 </head>
 
 <body>
-    <button type="button" onclick="Googlemap()">aaaaa</button>
+    <div class="container">
+        <div class="title">
+            <h1>ドライバー向け情報案内</h1>
+            <span id="view_clock"></span>
+            <script type="text/javascript">
+                timerID = setInterval('clock()', 500); //0.5秒毎にclock()を実行
 
+                function clock() {
+                    document.getElementById("view_clock").innerHTML = getNow();
+                }
+
+                function getNow() {
+                    var now = new Date();
+                    var year = now.getFullYear();
+                    var mon = now.getMonth() + 1; //１を足すこと
+                    var day = now.getDate();
+                    var hour = now.getHours();
+                    var min = now.getMinutes();
+                    if (min <= 9) {
+                        min = "0" + min
+                    }
+                    //出力用
+                    var s = '<div class="date">' + year + "年" + mon + "月" + day + "日" + '</div><div class="times">' + hour + "時" + min + "分" + '</div>';
+                    return s;
+                }
+            </script>
+
+        </div>
+        <div class="box">
+            <div class="contents">
+                <div class="contents1">
+                    <div class="subtitle">
+                        <h2>天気予報三日間</h2>
+                        <div class="average">平年気温
+                            <div id="max">0.0℃</div>
+                            /
+                            <div id="low">0.0℃</div>
+                        </div>
+                    </div>
+                    <div class="weather3days">
+                        <div class="box2">
+                            <div class="day">
+                                今日(
+                                <div id="today">
+                                    取得中
+                                </div>
+                                )
+                            </div>
+                            <img src="./img/Icons/100.svg" id="icon1">
+                            <div class="temp">
+                                <div id="max1">℃</div>
+                                /
+                                <div id="low1">℃</div>
+                            </div>
+
+
+                        </div>
+                        <div class="box2">
+                            <div class="day">
+                                明日(
+                                <div id="tomorrow">
+                                    取得中
+                                </div>
+                                )
+                            </div>
+                            <img src="./img/Icons/100.svg" id="icon2">
+                            <div class="temp">
+                                <div id="max2">℃</div>
+                                /
+                                <div id="low2">℃</div>
+                            </div>
+
+                        </div>
+                        <div class="box2">
+                            <div class="day">
+                                明後日(
+                                <div id="day_after_tomorrow">
+                                    取得中
+                                </div>
+                                )
+                            </div>
+                            <img src="./img/Icons/100.svg" id="icon3">
+                            <div class="temp">
+                                <div id="max3">℃</div>
+                                /
+                                <div id="low3">℃</div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="publishing">
+                        広島地方気象台
+                        <div id="todays">00</div>
+                        日
+                        <div id="publishingtime">00:00</div>発表 </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

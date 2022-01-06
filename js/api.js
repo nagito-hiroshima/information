@@ -1,25 +1,31 @@
 function WEATHER() {
     // 広島(310000)の予報を取得
     let url = "https://www.jma.go.jp/bosai/forecast/data/forecast/340000.json";
-
-    fetch(url)
+    return fetch(url)
         .then(function(response) {
             return response.json();
         })
         .then(function(weather) {
-            console.log(weather);
+            //console.log(weather);
+
             // 特定の地域(南部)だけ選択して変数に詰め直す
 
             let Datetime = weather[0].reportDatetime //取得時間
             let Defines = weather[0].timeSeries[0].timeDefines //予報時間
             let area = weather[0].timeSeries[0].areas[0]; //三日分（波、天気、風）
-            console.log(Datetime, Defines, area, "===============================");
+            //console.log(Datetime, Defines, area, "===============================");
 
             let tempAverage = weather[1].tempAverage.areas[0]; //広島平年温度
             let temp = weather[1].timeSeries[1].areas[0]; //広島温度
             let Defines2 = weather[1].timeSeries[1].timeDefines //予報時間
-            console.log(Defines2, temp, tempAverage);
+                //console.log(Defines2, temp, tempAverage);
+            return weather
         });
+
+
+}
+
+function WEATHER_NOW() {
 
     url = "https://www.jma.go.jp/bosai/forecast/data/overview_forecast/340000.json";
     fetch(url)
@@ -30,7 +36,9 @@ function WEATHER() {
             console.log(weather);
 
         });
+}
 
+function warning() {
     url = "https://www.jma.go.jp/bosai/warning/data/warning/340000.json";
     fetch(url)
         .then(function(response) {
@@ -105,6 +113,6 @@ function hinode() {
     console.log(times.sunrise, "日の出", times.sunset, "日の入り")
 }
 
-hinode();
-WEATHER();
-Googlemap();
+//hinode(); //日の出計算
+//WEATHER(); //天気API
+//Googlemap(); //GoogleAPI

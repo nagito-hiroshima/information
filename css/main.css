@@ -1,0 +1,124 @@
+/* リセットCSS（簡易版） */
+
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+}
+
+
+/* 全体を囲うコンテナー＆背景 */
+
+.container {
+    position: relative;
+    background-image: url('/img/back.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    width: 100%;
+    min-height: 100vh;
+    /*display: flex;
+    align-items: center;
+    justify-content: center;*/
+}
+
+.title {
+    padding-top: 20px;
+    font-size: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-text-stroke: 3px #FFF;
+}
+
+#view_clock {
+    -webkit-text-stroke: 0px #FFF;
+    color: #FFF;
+    margin-left: 20px;
+}
+
+.date {
+    font-size: 35px;
+    text-align: center;
+}
+
+.times {
+    margin-top: -20px;
+}
+
+.box {
+    position: absolute;
+    margin: 20px;
+    background: rgba(255, 255, 255, 0.7);
+    width: 1880px;
+    height: 960px;
+    border-radius: 10px;
+}
+
+h2 {
+    margin: 10px 40px;
+    font-size: 110px;
+}
+
+.subtitle {
+    align-items: center;
+    display: flex;
+    font-size: 70px;
+}
+
+.average {
+    display: flex;
+    margin-top: 20px;
+    margin-left: 90px;
+}
+
+#max,
+#max1,
+#max2,
+#max3 {
+    color: red;
+}
+
+#low,
+#low1,
+#low2,
+#low3 {
+    color: blue;
+}
+
+.weather3days {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.box2 {
+    padding-top: 20px;
+    margin: 20px;
+    width: 800px;
+    height: 600px;
+    font-size: 80px;
+}
+
+.day {
+    display: flex;
+    justify-content: center;
+}
+
+.box img {
+    margin-top: 20px;
+}
+
+.temp {
+    display: flex;
+    justify-content: center;
+}
+
+.publishing {
+    display: flex;
+    font-size: 40px;
+    margin-top: 50px;
+    margin-right: 20px;
+    justify-content: right;
+}
