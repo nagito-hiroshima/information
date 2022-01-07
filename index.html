@@ -12,6 +12,7 @@
     <script src="./js/sweetalert2.all.min.js" type="text/javascript"></script>
     <script src="./js/view.js" type="text/javascript"></script>
     <script src="./js/weathercode.js" type="text/javascript"></script>
+    <script src="./js/switch.js" type="text/javascript"></script>
     <link rel="stylesheet" href="./css/main.css">
     <title>ドライバー向け情報案内-エネフリ東広島西条店-</title>
 
@@ -56,7 +57,6 @@
 
         </div>
         <div class="box">
-            <div class="contents">
                 <div class="contents1">
                     <div class="subtitle">
                         <h2>天気予報三日間</h2>
@@ -126,7 +126,7 @@
                 <script>
                     //ロック機能 パスワード
                     const pass = "293832"
-                    Swal.fire({
+                    /*Swal.fire({
                         icon: 'error',
                         title: '利用にはパスワードが必要です',
                         input: 'password',
@@ -167,12 +167,26 @@
                             })
                             document.body.requestFullscreen();
                         }
-                    })
+                    })*/
+                    contents1();
                 </script>
+                <div class="contents2">
+                    <h2>今日の天気</h2>
+                    <div class="box3">
+                        <div class="view">
+                        <img src="./img/Icons/100.svg" id="icon1">
+                        <div class="temp">
+                            <div id="max3">℃</div>
+                            /
+                            <div id="low3">℃</div>
+                        </div>
+                        </div>
+                        aaa
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <img src="./img/back.png" class="look">
+    <img src="./img/back.pn" class="look">
 </body>
 
 </html>

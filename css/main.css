@@ -132,3 +132,17 @@ h2 {
     margin-right: 20px;
     justify-content: right;
 }
+
+.box3 {
+    margin: 20px;
+    width: 400px;
+    height: 350px;
+    font-size: 40px;
+    display: flex;
+}
+.view img{
+    height: 260px;
+}
+.contents2{
+    display: none;
+}
