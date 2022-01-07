@@ -11,17 +11,25 @@ function contents1() {
         let tempAverage = weather[1].tempAverage.areas[0]; //広島平年温度
         let temp = weather[1].timeSeries[1].areas[0]; //広島温度
         let Defines2 = weather[1].timeSeries[1].timeDefines //予報時間
-        let max1 = weather[0].timeSeries[2].areas[0].temps[0]//今日の最高気温
-        let low1 = weather[0].timeSeries[2].areas[0].temps[1]//今日の最低気温
-        if(low1 ==max1 ){//今日の最低気温が取得できなかった時「-」を表示
-            low1="-"
-        }
-        if(max1==""){//今日の気温を取得できなかった時「-」を表示
-            max1="-"
-        }
 
-        let max2 = weather[0].timeSeries[2].areas[0].temps[3]//明日の最高気温を取得
-        let low2 = weather[0].timeSeries[2].areas[0].temps[2]//明日の最低気温を取得
+        if(weather[0].timeSeries[2].areas[0].length==4){
+            if(low1 ==max1 ){//今日の最低気温が取得できなかった時「-」を表示
+                low1="-"
+            }
+            if(max1==""){//今日の気温を取得できなかった時「-」を表示
+                max1="-"
+            }
+            max1 = weather[0].timeSeries[2].areas[0].temps[0]//今日の最高気温
+            low1 = weather[0].timeSeries[2].areas[0].temps[1]//今日の最低気温
+            max2 = weather[0].timeSeries[2].areas[0].temps[3]//明日の最高気温を取得
+            low2 = weather[0].timeSeries[2].areas[0].temps[2]//明日の最低気温を取得
+
+        }else{
+            max1="-";
+            low1="-";
+            max2 = weather[0].timeSeries[2].areas[0].temps[1]//明日の最高気温を取得
+            low2 = weather[0].timeSeries[2].areas[0].temps[0]//明日の最低気温を取得
+        }
         let max3 = temp.tempsMax[1]//明後日の最高気温を取得
         let low3 = temp.tempsMin[1]//明後日の最低気温を取得
 
@@ -97,36 +105,55 @@ function contents3(){
         // ここでプロミスオブジェクトの中身をああだこうだする。
         //処理出来る形にする
         weather = value;
-        let max1 = weather[0].timeSeries[2].areas[0].temps[0]//今日の最高気温
-        let low1 = weather[0].timeSeries[2].areas[0].temps[1]//今日の最低気温
-        if(low1 ==max1 ){//今日の最低気温が取得できなかった時「-」を表示
-            low1="-"
-        }
-        if(max1==""){//今日の気温を取得できなかった時「-」を表示
-            max1="-"
+        if(weather[0].timeSeries[2].areas[0].length==4){
+            if(low1 ==max1 ){//今日の最低気温が取得できなかった時「-」を表示
+                low1="-"
+            }
+            if(max1==""){//今日の気温を取得できなかった時「-」を表示
+                max1="-"
+            }
+            max1 = weather[0].timeSeries[2].areas[0].temps[0]//今日の最高気温
+            low1 = weather[0].timeSeries[2].areas[0].temps[1]//今日の最低気温
+            max2 = weather[0].timeSeries[2].areas[0].temps[3]//明日の最高気温を取得
+            low2 = weather[0].timeSeries[2].areas[0].temps[2]//明日の最低気温を取得
+
+        }else{
+            max1="-";
+            low1="-";
+            max2 = weather[0].timeSeries[2].areas[0].temps[1]//明日の最高気温を取得
+            low2 = weather[0].timeSeries[2].areas[0].temps[0]//明日の最低気温を取得
         }
         let temp = weather[1].timeSeries[1].areas[0];
-        var table = document.getElementById('aaaaa');
+        var table = document.getElementById('table');
 
         var collection = table.rows;
         table.rows[3].cells[2].innerHTML ='<div class="temp2"><div class="max">'+weather[0].timeSeries[2].areas[0].temps[3]+'</div>/<div class="low">'+weather[0].timeSeries[2].areas[0].temps[2]+'</div></div>'
         table.rows[3].cells[1].innerHTML ='<div class="temp2"><div class="max">'+max1+'</div>/<div class="low">'+low1+'</div></div>'
         table.rows[2].cells[1].innerHTML =weather[0].timeSeries[1].areas[0].pops[0]+"%";
         table.rows[2].cells[2].innerHTML =weather[0].timeSeries[1].areas[0].pops[4]+"%";
-        table.rows[1].cells[1].innerHTML='<img src="./img/Icons/' + whatcode(weather[0].timeSeries[0].areas[0].weatherCodes[0])+'">'
+        table.rows[1].cells[1].innerHTML='<img src="./img/Icons/' + whatcode(weather[0].timeSeries[0].areas[0].weatherCodes[0])+'">';
+        table.rows[3].cells[2].innerHTML ='<div class="temp2"><div class="max">'+max2+'℃</div>/<div class="low">'+low2+'℃</div></div>';
     
-        console.log(collection[1]);
+        console.log(max2,low2);
+        
+        let Datetime = (weather[0].reportDatetime).substr(11, 5) //情報発表時間をフォーマット
+        document.getElementById('publishingtime4').innerHTML = Datetime;//情報発表時間書き込み
+        document.getElementById('todays4').innerHTML = (weather[0].reportDatetime).substr(8, 2);//情報発表日時を書き込み
+        document.getElementById('texts').innerHTML = weather.text
+
+        console.log(Datetime)
     
         for (i=0; i<7; i++)
         {
             let week = '<img src="./img/Icons/' + whatcode(weather[1].timeSeries[0].areas[0].weatherCodes[i])+'">';
             let iday= Number(weather[1].timeSeries[0].timeDefines[i].substr(8, 2))+"日"
-            let itemp='<div class="temp2"><div class="max">'+temp.tempsMax[i+1]+'</div>/<div class="low">'+temp.tempsMin[i+1]+'</div></div>'
+            let itemp='<div class="temp2"><div class="max">'+temp.tempsMax[i+1]+'</div>℃/<div class="low">'+temp.tempsMin[i+1]+'</div>℃</div>'
             table.rows[0].cells[i+2].innerText = iday;
             table.rows[1].cells[i+2].innerHTML = week;
             table.rows[2].cells[i+3].innerText = weather[1].timeSeries[0].areas[0].pops[i+1]+"%";
             table.rows[3].cells[i+3].innerHTML = itemp;
         }
+       
     })
 
 }
