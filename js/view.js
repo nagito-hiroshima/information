@@ -60,10 +60,73 @@ function contents1() {
         document.getElementById('publishingtime').innerHTML = Datetime;//情報発表時間書き込み
         document.getElementById('todays').innerHTML = Defines[0].substr(8, 2);//情報発表日時を書き込み
 
+        //今日の天気
+        icon4.src = "./img/Icons/" + whatcode(todaycode);//天気コードを引数で呼び出し
+        document.getElementById('max4').innerHTML = max1 + "℃";//最高気温書き込み
+        document.getElementById('low4').innerHTML = low1 + "℃";//最低気温書き込み
+        document.getElementById('wind').innerHTML =  weather[0].timeSeries[0].areas[0].winds[0]
+        document.getElementById('wave').innerHTML =  weather[0].timeSeries[0].areas[0].waves[0]
+        document.getElementById('pop').innerHTML =  weather[0].timeSeries[1].areas[0].pops[0]+"%"
+       
+        console.log(weather,today, todaycode, tomorrow, tomorrowcode, day_after_tomorrow, day_after_tomorrowcode);
+        console.log("=");
+        console.log(average_max, average_low, Datetime, temp, Defines2,max1);
+    })
 
-        console.log(weather,today, todaycode, tomorrow, tomorrowcode, day_after_tomorrow, day_after_tomorrowcode)
-        console.log("=")
-        console.log(average_max, average_low, Datetime, temp, Defines2,max1)
+}
+
+function contents2(){
+    let weather = WEATHER_NOW();
+    Promise.resolve(weather).then(function(value) {
+        // ここでプロミスオブジェクトの中身をああだこうだする。
+        //処理出来る形にする
+        weather = value;
+                //右下の情報源の表示処理
+                let Datetime = (weather.reportDatetime).substr(11, 5) //情報発表時間をフォーマット
+                document.getElementById('publishingtime2').innerHTML = Datetime;//情報発表時間書き込み
+                document.getElementById('todays2').innerHTML = (weather.reportDatetime).substr(8, 2);//情報発表日時を書き込み
+                document.getElementById('todays3').innerHTML = "("+Number((weather.reportDatetime).substr(8, 2))+"日)";//情報発表日時を書き込み
+                document.getElementById('texts').innerHTML = weather.text
+        console.log(weather)
+    })
+}
+
+function contents3(){
+    let weather = WEATHER();
+    Promise.resolve(weather).then(function(value) {
+        // ここでプロミスオブジェクトの中身をああだこうだする。
+        //処理出来る形にする
+        weather = value;
+        let max1 = weather[0].timeSeries[2].areas[0].temps[0]//今日の最高気温
+        let low1 = weather[0].timeSeries[2].areas[0].temps[1]//今日の最低気温
+        if(low1 ==max1 ){//今日の最低気温が取得できなかった時「-」を表示
+            low1="-"
+        }
+        if(max1==""){//今日の気温を取得できなかった時「-」を表示
+            max1="-"
+        }
+        let temp = weather[1].timeSeries[1].areas[0];
+        var table = document.getElementById('aaaaa');
+
+        var collection = table.rows;
+        table.rows[3].cells[2].innerHTML ='<div class="temp2"><div class="max">'+weather[0].timeSeries[2].areas[0].temps[3]+'</div>/<div class="low">'+weather[0].timeSeries[2].areas[0].temps[2]+'</div></div>'
+        table.rows[3].cells[1].innerHTML ='<div class="temp2"><div class="max">'+max1+'</div>/<div class="low">'+low1+'</div></div>'
+        table.rows[2].cells[1].innerHTML =weather[0].timeSeries[1].areas[0].pops[0]+"%";
+        table.rows[2].cells[2].innerHTML =weather[0].timeSeries[1].areas[0].pops[4]+"%";
+        table.rows[1].cells[1].innerHTML='<img src="./img/Icons/' + whatcode(weather[0].timeSeries[0].areas[0].weatherCodes[0])+'">'
+    
+        console.log(collection[1]);
+    
+        for (i=0; i<7; i++)
+        {
+            let week = '<img src="./img/Icons/' + whatcode(weather[1].timeSeries[0].areas[0].weatherCodes[i])+'">';
+            let iday= Number(weather[1].timeSeries[0].timeDefines[i].substr(8, 2))+"日"
+            let itemp='<div class="temp2"><div class="max">'+temp.tempsMax[i+1]+'</div>/<div class="low">'+temp.tempsMin[i+1]+'</div></div>'
+            table.rows[0].cells[i+2].innerText = iday;
+            table.rows[1].cells[i+2].innerHTML = week;
+            table.rows[2].cells[i+3].innerText = weather[1].timeSeries[0].areas[0].pops[i+1]+"%";
+            table.rows[3].cells[i+3].innerHTML = itemp;
+        }
     })
 
 }

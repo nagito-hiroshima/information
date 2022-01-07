@@ -57,135 +57,222 @@
 
         </div>
         <div class="box">
-                <div class="contents1">
-                    <div class="subtitle">
-                        <h2>天気予報三日間</h2>
-                        <div class="average">平年気温
-                            <div id="max">0.0℃</div>
-                            /
-                            <div id="low">0.0℃</div>
-                        </div>
+            <div class="contents1">
+                <div class="subtitle">
+                    <h2>天気予報三日間</h2>
+                    <div class="average">平年気温
+                        <div id="max">0.0℃</div>
+                        /
+                        <div id="low">0.0℃</div>
                     </div>
-                    <div class="weather3days">
-                        <div class="box2">
-                            <div class="day">
-                                今日(
-                                <div id="today">
-                                    取得中
-                                </div>
-                                )
-                            </div>
-                            <img src="./img/Icons/100.svg" id="icon1">
-                            <div class="temp">
-                                <div id="max1">℃</div>
-                                /
-                                <div id="low1">℃</div>
-                            </div>
-
-
-                        </div>
-                        <div class="box2">
-                            <div class="day">
-                                明日(
-                                <div id="tomorrow">
-                                    取得中
-                                </div>
-                                )
-                            </div>
-                            <img src="./img/Icons/100.svg" id="icon2">
-                            <div class="temp">
-                                <div id="max2">℃</div>
-                                /
-                                <div id="low2">℃</div>
-                            </div>
-
-                        </div>
-                        <div class="box2">
-                            <div class="day">
-                                明後日(
-                                <div id="day_after_tomorrow">
-                                    取得中
-                                </div>
-                                )
-                            </div>
-                            <img src="./img/Icons/100.svg" id="icon3">
-                            <div class="temp">
-                                <div id="max3">℃</div>
-                                /
-                                <div id="low3">℃</div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="publishing">
-                        広島地方気象台
-                        <div id="todays">00</div>
-                        日
-                        <div id="publishingtime">00:00</div>発表 </div>
                 </div>
-                <script>
-                    //ロック機能 パスワード
-                    const pass = "293832"
-                    /*Swal.fire({
-                        icon: 'error',
-                        title: '利用にはパスワードが必要です',
-                        input: 'password',
-                        inputAttributes: {
-                            autocapitalize: 'off'
-                        },
-                        footer: "ドライバー向け情報案内<br>パスワードはプリンターに記載<br>（API使用につき利用制限）",
-                        confirmButtonText: 'ログイン',
-                        showLoaderOnConfirm: true,
-                        showCancelButton: false,
-                        backdrop: false,
-                        preConfirm: (login) => {
-                            if (login == pass) {
-                                $('.look').css('display', 'none');
-                            } else {
-                                if (login != "") {
-                                    Swal.showValidationMessage(
-                                        'パスワードが違います: ' + login
-                                    )
-                                } else {
-                                    Swal.showValidationMessage(
-                                        'パスワードを入力してください')
-                                }
-                            }
-                        },
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            plays(2);
-                            Swal.fire({
-                                icon: 'success',
-                                title: '承認しました',
-                            }).then((result) => {
-                                //初回起動コード！！！
-                                //!!!!!!!!!!
-                                //!!!!!!!!!
-                                contents1();
+                <div class="weather3days">
+                    <div class="box2">
+                        <div class="day">
+                            今日(
+                            <div id="today">
+                                取得中
+                            </div>
+                            )
+                        </div>
+                        <img src="./img/wait.svg" id="icon1">
+                        <div class="temp">
+                            <div id="max1">℃</div>
+                            /
+                            <div id="low1">℃</div>
+                        </div>
 
-                            })
-                            document.body.requestFullscreen();
-                        }
-                    })*/
-                    contents1();
-                </script>
-                <div class="contents2">
-                    <h2>今日の天気</h2>
-                    <div class="box3">
-                        <div class="view">
-                        <img src="./img/Icons/100.svg" id="icon1">
+
+                    </div>
+                    <div class="box2">
+                        <div class="day">
+                            明日(
+                            <div id="tomorrow">
+                                取得中
+                            </div>
+                            )
+                        </div>
+                        <img src="./img/wait.svg" id="icon2">
+                        <div class="temp">
+                            <div id="max2">℃</div>
+                            /
+                            <div id="low2">℃</div>
+                        </div>
+
+                    </div>
+                    <div class="box2">
+                        <div class="day">
+                            明後日(
+                            <div id="day_after_tomorrow">
+                                取得中
+                            </div>
+                            )
+                        </div>
+                        <img src="./img/wait.svg" id="icon3">
                         <div class="temp">
                             <div id="max3">℃</div>
                             /
                             <div id="low3">℃</div>
                         </div>
-                        </div>
-                        aaa
+
+                    </div>
+                </div>
+                <div class="footer">
+                    <div class="publishing">
+                        広島地方気象台
+                        <div id="todays">00</div>
+                        日
+                        <div id="publishingtime">00:00</div>発表
                     </div>
                 </div>
             </div>
+            <script>
+                //ロック機能 パスワード
+                const pass = "293832"
+                /*Swal.fire({
+                    icon: 'error',
+                    title: '利用にはパスワードが必要です',
+                    input: 'password',
+                    inputAttributes: {
+                        autocapitalize: 'off'
+                    },
+                    footer: "ドライバー向け情報案内<br>パスワードはプリンターに記載<br>（API使用につき利用制限）",
+                    confirmButtonText: 'ログイン',
+                    showLoaderOnConfirm: true,
+                    showCancelButton: false,
+                    backdrop: false,
+                    preConfirm: (login) => {
+                        if (login == pass) {
+                            $('.look').css('display', 'none');
+                        } else {
+                            if (login != "") {
+                                Swal.showValidationMessage(
+                                    'パスワードが違います: ' + login
+                                )
+                            } else {
+                                Swal.showValidationMessage(
+                                    'パスワードを入力してください')
+                            }
+                        }
+                    },
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        plays(2);
+                        Swal.fire({
+                            icon: 'success',
+                            title: '承認しました',
+                        }).then((result) => {
+                            //初回起動コード！！！
+                            //!!!!!!!!!!
+                            //!!!!!!!!!
+                            contents1();
+
+                        })
+                        document.body.requestFullscreen();
+                    }
+                })*/
+                contents1();
+            </script>
+            <div class="contents2">
+                <div class="subtitle">
+                    <h2>今日の天気</h2>
+                    <div id="todays3">
+
+                    </div>
+                </div>
+                <div class="box3">
+                    <div class="view">
+                        <img src="./img/wait.svg" id="icon4">
+                        <div class="temp">
+                            <div id="max4">℃</div>
+                            /
+                            <div id="low4">℃</div>
+                        </div>
+                    </div>
+                    <div class="moji">
+                        <span id="texts">
+                            取得中....
+                        </span>
+                        <div class="icoms">
+                            <div class="icom">
+                                <img src="./img/pop.svg">
+                                <div id="pop">
+                                    調整中...
+                                </div>
+                            </div>
+                            <div class="icom">
+                                <img src="./img/wind.svg">
+                                <div id="wind">
+                                    調整中...
+                                </div>
+                            </div>
+                            <div class="icom">
+                                <img src="./img/wave.svg">
+                                <div id="wave">
+                                    調整中...</div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="footer">
+                    <div class="publishing">
+                        広島地方気象台
+                        <div id="todays2">00</div>
+                        日
+                        <div id="publishingtime2">00:00</div>発表
+                    </div>
+                </div>
+            </div>
+            <div class="contents3">
+                <div class="subtitle">
+                    <h2>1週間の天気</h2>
+                    </div>
+                    <table id="aaaaa">
+                        <tr>
+                        <td></td>
+                          <td>今日</td>
+                          <td>明日</td>
+                          <td>３日後</td>
+                          <td>４日後</td>
+                          <td>５日後</td>
+                          <td>６日後</td>
+                          <td>７日後</td>
+                        </tr>
+                        <tr>
+                          <td>天気</td>
+                          <td>1</td>
+                          <td>2</td>
+                          <td>3</td>
+                          <td>4</td>
+                          <td>5</td>
+                          <td>6</td>
+                          <td>7</td>
+                        </tr>
+                        <tr>
+                            <td>降水確率</td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>5</td>
+                            <td>6</td>
+                            <td>7</td>
+                          </tr>
+                          <tr>
+                            <td>気温</td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>5</td>
+                            <td>6</td>
+                            <td>7</td>
+                          </tr>
+                      </table>
+            </div>
         </div>
+    </div>
     <img src="./img/back.pn" class="look">
 </body>
 

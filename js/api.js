@@ -28,12 +28,12 @@ function WEATHER() {
 function WEATHER_NOW() {
 
     url = "https://www.jma.go.jp/bosai/forecast/data/overview_forecast/340000.json";
-    fetch(url)
+    return fetch(url)
         .then(function(response) {
             return response.json();
         })
         .then(function(weather) {
-            console.log(weather);
+            return weather
 
         });
 }

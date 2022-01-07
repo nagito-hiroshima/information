@@ -32,6 +32,13 @@
     align-items: center;
     justify-content: center;*/
 }
+.contents2,
+.contents3,
+.contents4,
+.contents5,
+.contents6{
+    display:none;
+}
 
 .title {
     padding-top: 20px;
@@ -63,7 +70,7 @@
     margin: 20px;
     background: rgba(255, 255, 255, 0.7);
     width: 1240px;
-    height: 550px;
+    height: 570px;
     border-radius: 10px;
 }
 
@@ -83,18 +90,20 @@ h2 {
     margin-top: 10px;
     margin-left: 50px;
 }
-
+.max,
 #max,
 #max1,
 #max2,
-#max3 {
+#max3,
+#max4 {
     color: red;
 }
-
+.low,
 #low,
 #low1,
 #low2,
-#low3 {
+#low3,
+#low4{
     color: blue;
 }
 
@@ -107,7 +116,7 @@ h2 {
 .box2 {
     margin: 20px;
     width: 400px;
-    height: 350px;
+    height: 335px;
     font-size: 40px;
 }
 
@@ -128,21 +137,37 @@ h2 {
 .publishing {
     display: flex;
     font-size: 30px;
-    margin-top: 0px;
+    margin-top: 30px;
     margin-right: 20px;
     justify-content: right;
 }
 
 .box3 {
-    margin: 20px;
-    width: 400px;
-    height: 350px;
-    font-size: 40px;
+    margin: 15px 20px;
+    width: 1200px;
+    height: 360px;
+    font-size: 25px;
     display: flex;
+}
+.box .temp{
+    font-size: 40px;
 }
 .view img{
     height: 260px;
 }
-.contents2{
-    display: none;
+
+.icoms{
+    display: flex;
+}
+.icom{
+    margin: 0 20px;
+    text-align: center;
+    font-size: 20px;
+}
+.icom img{
+    height: 100px;
+}
+.temp2 {
+    display: flex;
+    justify-content: center;
 }
