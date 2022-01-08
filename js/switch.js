@@ -1,6 +1,6 @@
 let no=1;
 function tests(){
-setInterval(test3, 10000);
+setInterval(test3, 20000);
 setInterval(test1000,300000);
 }
 

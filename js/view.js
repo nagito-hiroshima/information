@@ -105,7 +105,7 @@ function contents2(){
                 document.getElementById('publishingtime2').innerHTML = Datetime;//情報発表時間書き込み
                 document.getElementById('todays2').innerHTML = (weather.reportDatetime).substr(8, 2);//情報発表日時を書き込み
                 document.getElementById('todays3').innerHTML = "("+Number((weather.reportDatetime).substr(8, 2))+"日)";//情報発表日時を書き込み
-                document.getElementById('texts').innerHTML = weather.text
+                document.getElementById('texts').innerHTML = weather.text;
         console.log(weather)
     })
 }
