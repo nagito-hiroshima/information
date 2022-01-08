@@ -1,8 +1,9 @@
+let no;
 function test(){
     $('.contents1').css('display', 'none');
     contents2();
     $('.contents2').css('display', 'block');
-    window.setTimeout(test2,2000);
+    window.setTimeout(test22,2000);
 
 
  
@@ -45,4 +46,4 @@ function test3(){
     }
 }
 
-setInterval(test3(), 10000);
+setInterval(test3, 1000);

@@ -11,6 +11,7 @@ function contents1() {
         let tempAverage = weather[1].tempAverage.areas[0]; //広島平年温度
         let temp = weather[1].timeSeries[1].areas[0]; //広島温度
         let Defines2 = weather[1].timeSeries[1].timeDefines //予報時間
+        console.log(weather)
 
         if(weather[0].timeSeries[2].areas[0].length==4){
             if(low1 ==max1 ){//今日の最低気温が取得できなかった時「-」を表示
@@ -50,12 +51,20 @@ function contents1() {
         document.getElementById('low2').innerHTML = low2 + "℃";
 
         //明後日の表示処理
+        if(Defines.length==3){
         let day_after_tomorrow = Number(Defines[2].substr(8, 2));
         document.getElementById('day_after_tomorrow').innerHTML = day_after_tomorrow + "日";
         let day_after_tomorrowcode = weatherCode[2];
         icon3.src = "./img/Icons/" + whatcode(day_after_tomorrowcode);
         document.getElementById('max3').innerHTML = max3 + "℃";
         document.getElementById('low3').innerHTML = low3 + "℃";
+        }else{
+        let day_after_tomorrow = tomorrow+1;
+        document.getElementById('day_after_tomorrow').innerHTML = day_after_tomorrow + "日";
+        document.getElementById('max3').innerHTML =  "-℃";
+        document.getElementById('low3').innerHTML = "-℃";
+
+        }
         
         //平均気温の表示処理
         let average_max = weather[1].tempAverage.areas[0].max//平均最高気温代入
@@ -78,7 +87,7 @@ function contents1() {
        
         console.log(weather,today, todaycode, tomorrow, tomorrowcode, day_after_tomorrow, day_after_tomorrowcode);
         console.log("=");
-        console.log(average_max, average_low, Datetime, temp, Defines2,max1);
+        console.log(average_max, average_low, Datetime, temp, Defines2,weather);
     })
 
 }
