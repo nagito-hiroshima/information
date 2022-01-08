@@ -16,7 +16,7 @@ function test2(){
     contents3();
     $('.contents3').css('display', 'block');
 }
-window.setTimeout(test,2000);
+//window.setTimeout(test,2000);
 
 function test3(){
     
@@ -46,4 +46,4 @@ function test3(){
     }
 }
 
-setInterval(test3, 1000);
+//setInterval(test3, 1000);
