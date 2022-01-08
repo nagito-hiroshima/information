@@ -130,7 +130,7 @@
             <script>
                 //ロック機能 パスワード
                 const pass = "293832"
-                /*Swal.fire({
+                Swal.fire({
                     icon: 'error',
                     title: '利用にはパスワードが必要です',
                     input: 'password',
@@ -158,6 +158,8 @@
                     },
                 }).then((result) => {
                     if (result.isConfirmed) {
+                        tests();
+                        test1000();
                         plays(2);
                         Swal.fire({
                             icon: 'success',
@@ -166,13 +168,13 @@
                             //初回起動コード！！！
                             //!!!!!!!!!!
                             //!!!!!!!!!
-                            contents1();
+                            
+
 
                         })
                         document.body.requestFullscreen();
                     }
-                })*/
-                contents1();
+                })
             </script>
             <div class="contents2">
                 <div class="subtitle">
@@ -282,7 +284,7 @@
             </div>
         </div>
     </div>
-    <img src="./img/back.pn" class="look">
+    <img src="./img/back.png" class="look">
 </body>
 
 </html>

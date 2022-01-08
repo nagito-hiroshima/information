@@ -13,19 +13,21 @@ function contents1() {
         let Defines2 = weather[1].timeSeries[1].timeDefines //予報時間
         console.log(weather)
 
-        if(weather[0].timeSeries[2].areas[0].length==4){
+        if(weather[0].timeSeries[2].areas[0].temps.length==4){
+            console.log("それな")
+            max1 = weather[0].timeSeries[2].areas[0].temps[0]//今日の最高気温
+            low1 = weather[0].timeSeries[2].areas[0].temps[1]//今日の最低気温
+            max2 = weather[0].timeSeries[2].areas[0].temps[3]//明日の最高気温を取得
+            low2 = weather[0].timeSeries[2].areas[0].temps[2]//明日の最低気温を取得
             if(low1 ==max1 ){//今日の最低気温が取得できなかった時「-」を表示
                 low1="-"
             }
             if(max1==""){//今日の気温を取得できなかった時「-」を表示
                 max1="-"
             }
-            max1 = weather[0].timeSeries[2].areas[0].temps[0]//今日の最高気温
-            low1 = weather[0].timeSeries[2].areas[0].temps[1]//今日の最低気温
-            max2 = weather[0].timeSeries[2].areas[0].temps[3]//明日の最高気温を取得
-            low2 = weather[0].timeSeries[2].areas[0].temps[2]//明日の最低気温を取得
 
         }else{
+            console.log("わかる")
             max1="-";
             low1="-";
             max2 = weather[0].timeSeries[2].areas[0].temps[1]//明日の最高気温を取得
@@ -114,19 +116,21 @@ function contents3(){
         // ここでプロミスオブジェクトの中身をああだこうだする。
         //処理出来る形にする
         weather = value;
-        if(weather[0].timeSeries[2].areas[0].length==4){
+        if(weather[0].timeSeries[2].areas[0].temps.length==4){
+            console.log("それな")
+            max1 = weather[0].timeSeries[2].areas[0].temps[0]//今日の最高気温
+            low1 = weather[0].timeSeries[2].areas[0].temps[1]//今日の最低気温
+            max2 = weather[0].timeSeries[2].areas[0].temps[3]//明日の最高気温を取得
+            low2 = weather[0].timeSeries[2].areas[0].temps[2]//明日の最低気温を取得
             if(low1 ==max1 ){//今日の最低気温が取得できなかった時「-」を表示
                 low1="-"
             }
             if(max1==""){//今日の気温を取得できなかった時「-」を表示
                 max1="-"
             }
-            max1 = weather[0].timeSeries[2].areas[0].temps[0]//今日の最高気温
-            low1 = weather[0].timeSeries[2].areas[0].temps[1]//今日の最低気温
-            max2 = weather[0].timeSeries[2].areas[0].temps[3]//明日の最高気温を取得
-            low2 = weather[0].timeSeries[2].areas[0].temps[2]//明日の最低気温を取得
 
         }else{
+            console.log("わかる")
             max1="-";
             low1="-";
             max2 = weather[0].timeSeries[2].areas[0].temps[1]//明日の最高気温を取得
@@ -137,7 +141,7 @@ function contents3(){
 
         var collection = table.rows;
         table.rows[3].cells[2].innerHTML ='<div class="temp2"><div class="max">'+weather[0].timeSeries[2].areas[0].temps[3]+'</div>/<div class="low">'+weather[0].timeSeries[2].areas[0].temps[2]+'</div></div>'
-        table.rows[3].cells[1].innerHTML ='<div class="temp2"><div class="max">'+max1+'</div>/<div class="low">'+low1+'</div></div>'
+        table.rows[3].cells[1].innerHTML ='<div class="temp2"><div class="max">'+max1+'℃</div>/<div class="low">'+low1+'℃</div></div>'
         table.rows[2].cells[1].innerHTML =weather[0].timeSeries[1].areas[0].pops[0]+"%";
         table.rows[2].cells[2].innerHTML =weather[0].timeSeries[1].areas[0].pops[4]+"%";
         table.rows[1].cells[1].innerHTML='<img src="./img/Icons/' + whatcode(weather[0].timeSeries[0].areas[0].weatherCodes[0])+'">';
