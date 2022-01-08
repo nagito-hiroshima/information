@@ -34,8 +34,7 @@ function test3(){
     
     switch (no) {
         case 1:
-            $('.contents3').css('display', 'none');
-            
+            $('.contents3').css('display', 'none');         
             $('.contents1').css('display', 'block')
             no=2
             break
