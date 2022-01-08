@@ -33,21 +33,20 @@ function WEATHER_NOW() {
             return response.json();
         })
         .then(function(weather) {
-            return weather
+            return weather;
 
         });
 }
 
 function warning() {
     url = "https://www.jma.go.jp/bosai/warning/data/warning/340000.json";
-    fetch(url)
+    return fetch(url)
         .then(function(response) {
             return response.json();
         })
         .then(function(weather) {
-            console.log(weather);
-            let warning = weather.areaTypes[1].areas[10].warnings //東広島の警報情報
-            console.log(warning);
+            let warning = weather //東広島の警報情報
+            return warning;
         });
 
 

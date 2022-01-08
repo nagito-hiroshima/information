@@ -1,4 +1,4 @@
-{
+const Wcode = {
     "warninginfo": {
         "02": "暴風雪警報",
         "03": "大雨警報",
@@ -29,4 +29,9 @@
         "36": "大雪特別警報",
         "37": "波浪特別警報"
     }
+}
+
+function whatwarningcode(code) {
+    //console.log(Wcode.warninginfo[code])
+    return (Wcode.warninginfo[code])
 }
