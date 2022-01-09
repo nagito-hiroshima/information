@@ -13,6 +13,7 @@ function contents1() {
         let Defines2 = weather[1].timeSeries[1].timeDefines //予報時間
         console.log(weather)
 
+
         if (weather[0].timeSeries[2].areas[0].temps.length == 4) {
             console.log("それな")
             max1 = weather[0].timeSeries[2].areas[0].temps[0] //今日の最高気温
@@ -61,10 +62,14 @@ function contents1() {
             document.getElementById('max3').innerHTML = max3 + "℃";
             document.getElementById('low3').innerHTML = low3 + "℃";
         } else {
+            let day_after_tomorrowcode = weather[1].timeSeries[0].areas[0].weatherCodes[2]
+            icon3.src = "./img/Icons/" + whatcode(day_after_tomorrowcode);
             let day_after_tomorrow = tomorrow + 1;
             document.getElementById('day_after_tomorrow').innerHTML = day_after_tomorrow + "日";
-            document.getElementById('max3').innerHTML = "-℃";
-            document.getElementById('low3').innerHTML = "-℃";
+            max3=weather[1].timeSeries[1].areas[0].tempsMax[2]
+            low3=weather[1].timeSeries[1].areas[0].tempsMin[2]
+            document.getElementById('max3').innerHTML = max3 + "℃";
+            document.getElementById('low3').innerHTML = low3 + "℃";
 
         }
 
