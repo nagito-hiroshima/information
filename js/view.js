@@ -21,16 +21,40 @@ function contents1() {
             max2 = weather[0].timeSeries[2].areas[0].temps[3] //明日の最高気温を取得
             low2 = weather[0].timeSeries[2].areas[0].temps[2] //明日の最低気温を取得
             if (low1 == max1) { //今日の最低気温が取得できなかった時「-」を表示
-                low1 = "-"
+                let weather = tempsDay();
+                Promise.resolve(weather).then(function(value) {
+                    // ここでプロミスオブジェクトの中身をああだこうだする。
+                    let keys_array = Object.keys(value);
+                    let len = keys_array.length - 1
+                    low1 = value[keys_array[len]].minTemp[0]
+                    console.log(low1)
+                })
+
             }
             if (max1 == "") { //今日の気温を取得できなかった時「-」を表示
-                max1 = "-"
+                let weather = tempsDay();
+                Promise.resolve(weather).then(function(value) {
+                    // ここでプロミスオブジェクトの中身をああだこうだする。
+                    let keys_array = Object.keys(value);
+                    let len = keys_array.length - 1
+                    low1 = value[keys_array[len]].maxTemp[0]
+                })
             }
 
         } else {
             console.log("わかる")
-            max1 = "-";
-            low1 = "-";
+            let temps = tempsDay();
+            console.log(temps.PromiseResult)
+            Promise.resolve(temps).then(function(value) {
+                // ここでプロミスオブジェクトの中身をああだこうだする。
+                let keys_array = Object.keys(value);
+                let len = keys_array.length - 1
+                max1 = value[keys_array[len]].maxTemp[0]
+                low1 = value[keys_array[len]].minTemp[0]
+                console.log(low1, max1, "わーーーーーーい")
+                return low1, max1
+            })
+            console.log(low1, max1, "わー----------------ーーーーーい")
             max2 = weather[0].timeSeries[2].areas[0].temps[1] //明日の最高気温を取得
             low2 = weather[0].timeSeries[2].areas[0].temps[0] //明日の最低気温を取得
         }
@@ -38,12 +62,21 @@ function contents1() {
         let low3 = temp.tempsMin[1] //明後日の最低気温を取得
 
         //今日の表示処理
+
         let today = Number(Defines[0].substr(8, 2)); //日にちを０１＝＞１に変更
         document.getElementById('today').innerHTML = today + "日"; //日に書き込み
         let todaycode = weatherCode[0]; //天気コード代入
         icon1.src = "./img/Icons/" + whatcode(todaycode); //天気コードを引数で呼び出し
-        document.getElementById('max1').innerHTML = max1 + "℃"; //最高気温書き込み
-        document.getElementById('low1').innerHTML = low1 + "℃"; //最低気温書き込み
+        window.setTimeout(function() {
+            document.getElementById('max1').innerHTML = max1 + "℃"; //最高気温書き込み
+            document.getElementById('low1').innerHTML = low1 + "℃"; //最低気温書き込み
+
+        }, 200);
+
+        console.log(low1, max1, "わー------------jflakjklas----ーーーーーい")
+
+
+
 
         //明日の表示処理
         let tomorrow = Number(Defines[1].substr(8, 2));
@@ -66,8 +99,8 @@ function contents1() {
             icon3.src = "./img/Icons/" + whatcode(day_after_tomorrowcode);
             let day_after_tomorrow = tomorrow + 1;
             document.getElementById('day_after_tomorrow').innerHTML = day_after_tomorrow + "日";
-            max3=weather[1].timeSeries[1].areas[0].tempsMax[2]
-            low3=weather[1].timeSeries[1].areas[0].tempsMin[2]
+            max3 = weather[1].timeSeries[1].areas[0].tempsMax[2]
+            low3 = weather[1].timeSeries[1].areas[0].tempsMin[2]
             document.getElementById('max3').innerHTML = max3 + "℃";
             document.getElementById('low3').innerHTML = low3 + "℃";
 
@@ -92,9 +125,10 @@ function contents1() {
         document.getElementById('wave').innerHTML = weather[0].timeSeries[0].areas[0].waves[0]
         document.getElementById('pop').innerHTML = weather[0].timeSeries[1].areas[0].pops[0] + "%"
 
-        console.log(weather, today, todaycode, tomorrow, tomorrowcode, day_after_tomorrow, day_after_tomorrowcode);
+        console.log(weather, today, todaycode, tomorrow, tomorrowcode, day_after_tomorrow);
         console.log("=");
         console.log(average_max, average_low, Datetime, temp, Defines2, weather);
+        asynchronousFunc();
     })
 
 }
@@ -129,6 +163,7 @@ function contents3() {
             max2 = weather[0].timeSeries[2].areas[0].temps[3] //明日の最高気温を取得
             low2 = weather[0].timeSeries[2].areas[0].temps[2] //明日の最低気温を取得
             if (low1 == max1) { //今日の最低気温が取得できなかった時「-」を表示
+
                 low1 = "-"
             }
             if (max1 == "") { //今日の気温を取得できなかった時「-」を表示
@@ -166,7 +201,7 @@ function contents3() {
             let week = '<img src="./img/Icons/' + whatcode(weather[1].timeSeries[0].areas[0].weatherCodes[i]) + '">';
             let iday = Number(weather[1].timeSeries[0].timeDefines[i].substr(8, 2)) + "日"
             let itemp = '<div class="temp2"><div class="max">' + temp.tempsMax[i + 1] + '℃</div>/<div class="low">' + temp.tempsMin[i + 1] + '℃</div></div>'
-            table.rows[0].cells[i+1].innerText = iday;
+            table.rows[0].cells[i + 1].innerText = iday;
             table.rows[1].cells[i + 2].innerHTML = week;
             table.rows[2].cells[i + 3].innerText = weather[1].timeSeries[0].areas[0].pops[i + 2] + "%";
             table.rows[3].cells[i + 3].innerHTML = itemp;
@@ -180,7 +215,7 @@ function contents4() {
     let high_warning = [],
         middle_warning = [],
         low_warning = [];
-        $("#warning").empty()
+    $("#warning").empty()
 
     let warnings = warning();
     Promise.resolve(warnings).then(function(value) {

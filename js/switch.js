@@ -2,7 +2,7 @@ let no = 1;
 
 function tests() {
     load();
-    setInterval(test3, 20000); //表示切り替え20秒単位
+    setInterval(test3, 20000); //表示切り替え20秒(20000)単位
     setInterval(load, 300000); //情報更新五分単位
 
 }

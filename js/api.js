@@ -53,6 +53,49 @@ function warning() {
 
 }
 
+
+function tempsDay() {
+
+    url = "https://www.jma.go.jp/bosai/amedas/data/latest_time.txt";
+    return fetch(url)
+        .then(function(response) {
+            return response.text();
+        })
+        .then(function(time) {
+            console.log(time);
+            day = (time.replace('-', "")).replace("-", "").substring(0, 8);
+            time = time.substring(11, 13)
+            if (time >= "00" && time < "03") {
+                time = "00"
+            } else if (time >= "03" && time < "06") {
+                time = "03"
+            } else if (time >= "06" && time < "09") {
+                time = "06"
+            } else if (time >= "09" && time < "12") {
+                time = "09"
+            } else if (time >= "12" && time < "15") {
+                time = "12"
+            } else if (time >= "15" && time < "18") {
+                time = "15"
+            } else if (time >= "18" && time < "21") {
+                time = "18"
+            } else if (time >= "21") {
+                time = "21"
+            }
+
+            url = "https://www.jma.go.jp/bosai/amedas/data/point/67376/" + day + "_" + time + ".json";
+            console.log(url, time, "==-これ")
+
+            return fetch(url)
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(temple) {
+                    return temple;
+                });
+        });
+}
+
 function Googlemap() {
     var directionsService = new google.maps.DirectionsService();
     let start = "伊藤忠エネクスグループ エネクスフリート株式会社 東広島西条店、〒739-0022 広島県東広島市西条町上三永１５０９";
