@@ -5,7 +5,7 @@ function tests() {
     contents5(); //contents5...GoogleAPI交通状況
     setInterval(switchs, 20000); //表示切り替え20秒(20000)単位
     setInterval(load, 300000); //情報更新五分単位
-    setInterval(contents5, 90000); //GoogleAPIは有料の為１５分間隔で更新
+    setInterval(contents5, 900000); //GoogleAPIは有料の為１５分間隔で更新
 
     //$('.contents1').css('display', 'none');
     //$('.contents5').css('display', 'block')

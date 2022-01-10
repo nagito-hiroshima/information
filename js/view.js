@@ -277,10 +277,13 @@ function contents5() {
             hiroshimaDuration = result.routes[0].legs[0].duration.value
             hiroshimaTraffic = result.routes[0].legs[0].duration_in_traffic.value
 
-            hiroshimaMD = Math.floor(hiroshimaDuration % 3600 / 60)
+            hiroshimaMD = Math.floor(hiroshimaDuration / 60)
+            hiroshimaMM = Math.floor(hiroshimaTraffic / 60)
             hiroshimaM = Math.floor(hiroshimaTraffic % 3600 / 60)
             hiroshimaH = Math.floor(hiroshimaTraffic / 3600)
-            hiroshimaSABUN = hiroshimaMD - hiroshimaM;
+            hiroshimaSABUN = hiroshimaMD - hiroshimaMM;
+
+            console.log(hiroshimaH, hiroshimaM, hiroshimaMD, hiroshimaSABUN, hiroshimaMM)
             if (hiroshimaH == 0) {
                 document.getElementById('hiroshimatime').innerHTML = hiroshimaM + "分";
             } else {
@@ -308,11 +311,11 @@ function contents5() {
             Traffic = result.routes[0].legs[0].duration_in_traffic.value
 
 
-
-            fukuyamaMD = Math.floor(Duration % 3600 / 60)
+            fukuyamaMD = Math.floor(hiroshimaDuration / 60)
+            fukuyamaMM = Math.floor(hiroshimaTraffic / 60)
             fukuyamaM = Math.floor(Traffic % 3600 / 60)
             fukuyamaH = Math.floor(Traffic / 3600)
-            fukuyamaSABUN = fukuyamaMD - fukuyamaM;
+            fukuyamaSABUN = fukuyamaMD - fukuyamaMM;
 
 
             if (fukuyamaH == 0) {
