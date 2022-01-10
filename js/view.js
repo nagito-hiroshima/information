@@ -166,9 +166,9 @@ function contents3() {
             let week = '<img src="./img/Icons/' + whatcode(weather[1].timeSeries[0].areas[0].weatherCodes[i]) + '">';
             let iday = Number(weather[1].timeSeries[0].timeDefines[i].substr(8, 2)) + "日"
             let itemp = '<div class="temp2"><div class="max">' + temp.tempsMax[i + 1] + '℃</div>/<div class="low">' + temp.tempsMin[i + 1] + '℃</div></div>'
-            table.rows[0].cells[i+2].innerText = iday;
-            table.rows[1].cells[i + 1].innerHTML = week;
-            table.rows[2].cells[i + 3].innerText = weather[1].timeSeries[0].areas[0].pops[i + 1] + "%";
+            table.rows[0].cells[i+1].innerText = iday;
+            table.rows[1].cells[i + 2].innerHTML = week;
+            table.rows[2].cells[i + 3].innerText = weather[1].timeSeries[0].areas[0].pops[i + 2] + "%";
             table.rows[3].cells[i + 3].innerHTML = itemp;
         }
 
@@ -180,7 +180,7 @@ function contents4() {
     let high_warning = [],
         middle_warning = [],
         low_warning = [];
-        $("#warning").remove();
+        $("#warning").empty()
 
     let warnings = warning();
     Promise.resolve(warnings).then(function(value) {
