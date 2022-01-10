@@ -2,11 +2,11 @@ let no = 1;
 
 function tests() {
     load();
-    contents5();
-    setInterval(test3, 20000); //表示切り替え20秒(20000)単位
+    contents5(); //contents5...GoogleAPI交通状況
+    setInterval(switchs, 20000); //表示切り替え20秒(20000)単位
     setInterval(load, 300000); //情報更新五分単位
-    setInterval(contents5, 90000);
-    test3();
+    setInterval(contents5, 90000); //GoogleAPIは有料の為１５分間隔で更新
+
     //$('.contents1').css('display', 'none');
     //$('.contents5').css('display', 'block')
 
@@ -15,17 +15,17 @@ function tests() {
 
 function load() {
 
-    contents1();
-    contents2();
-    contents3();
-    contents4();
+    contents1(); //contents1...三日間の天気予報
+    contents2(); //contents2...天気詳細
+    contents3(); //contents3...一週間の天気予報
+    contents4(); //contents4...警報注意報
 
 
 }
 
 //window.setTimeout(test,4000);
 
-function test3() {
+function switchs() {
     switch (no) {
         case 1:
             $('.contents5').css('display', 'none');
@@ -57,5 +57,3 @@ function test3() {
 
     }
 }
-
-//setInterval(test3, 1000);
