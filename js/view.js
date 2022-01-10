@@ -149,8 +149,17 @@ function contents3() {
             max2 = weather[0].timeSeries[2].areas[0].temps[3] //明日の最高気温を取得
             low2 = weather[0].timeSeries[2].areas[0].temps[2] //明日の最低気温を取得
             if (low1 == max1) { //今日の最低気温が取得できなかった時「-」を表示
+                let temps = tempsDay();
 
-                low1 = "-"
+                Promise.resolve(temps).then(function(value) {
+                    // ここでプロミスオブジェクトの中身をああだこうだする。
+                    let keys_array = Object.keys(value);
+                    let len = keys_array.length - 1
+                    low1 = value[keys_array[len]].minTemp[0] //今日の記録された最低気温を取得代入
+                    table.rows[3].cells[1].innerHTML = '<div class="temp2"><div class="max">' + max1 + '℃</div>/<div class="low">' + low1 + '℃</div></div>'
+                })
+
+
             }
             if (max1 == "") { //今日の気温を取得できなかった時「-」を表示
                 max1 = "-"
@@ -167,15 +176,25 @@ function contents3() {
         var table = document.getElementById('table');
 
         var collection = table.rows;
+        console.log(weather)
+        for (i = 0; i < weather[1].timeSeries[0].timeDefines.length; i++) {
+            let week = '<img src="./img/Icons/' + whatcode(weather[1].timeSeries[0].areas[0].weatherCodes[i]) + '">';
+            let iday = Number(weather[1].timeSeries[0].timeDefines[i].substr(8, 2)) + "日"
+            let itemp = '<div class="temp2"><div class="max">' + temp.tempsMax[i] + '℃</div>/<div class="low">' + temp.tempsMin[i] + '℃</div></div>'
+            table.rows[0].cells[i + 1].innerText = iday;
+            table.rows[1].cells[i + 1].innerHTML = week;
+            table.rows[2].cells[i + 1].innerText = weather[1].timeSeries[0].areas[0].pops[i] + "%";
+            table.rows[3].cells[i + 1].innerHTML = itemp;
+            console.log(i, week)
+        }
+
+        table.rows[2].cells[1].innerHTML = weather[0].timeSeries[1].areas[0].pops[0] + "%"; //今日の降水確率
+        //table.rows[2].cells[2].innerHTML = weather[0].timeSeries[1].areas[0].pops[4] + "%";
+
+
         //table.rows[3].cells[2].innerHTML = '<div class="temp2"><div class="max">' + weather[0].timeSeries[2].areas[0].temps[3] + '</div>/<div class="low">' + weather[0].timeSeries[2].areas[0].temps[2] + '</div></div>'
 
-        window.setTimeout(function() {
-            table.rows[3].cells[1].innerHTML = '<div class="temp2"><div class="max">' + max1 + '℃</div>/<div class="low">' + low1 + '℃</div></div>'
-        }, 100)
 
-
-        table.rows[2].cells[1].innerHTML = weather[0].timeSeries[1].areas[0].pops[0] + "%";
-        table.rows[2].cells[2].innerHTML = weather[0].timeSeries[1].areas[0].pops[4] + "%";
 
         table.rows[1].cells[1].innerHTML = '<img src="./img/Icons/' + whatcode(weather[0].timeSeries[0].areas[0].weatherCodes[0]) + '">';
         table.rows[3].cells[2].innerHTML = '<div class="temp2"><div class="max">' + max2 + '℃</div>/<div class="low">' + low2 + '℃</div></div>';
@@ -186,17 +205,14 @@ function contents3() {
         document.getElementById('publishingtime4').innerHTML = Datetime; //情報発表時間書き込み
         document.getElementById('todays4').innerHTML = (weather[0].reportDatetime).substr(8, 2); //情報発表日時を書き込み
 
-        console.log(Datetime)
+        console.log(weather[1].timeSeries[0].timeDefines.length, "asdjalkdjaskldjkl")
 
-        for (i = 0; i < weather[1].timeSeries[0].timeDefines.length + 1; i++) {
-            let week = '<img src="./img/Icons/' + whatcode(weather[1].timeSeries[0].areas[0].weatherCodes[i]) + '">';
-            let iday = Number(weather[1].timeSeries[0].timeDefines[i].substr(8, 2)) + "日"
-            let itemp = '<div class="temp2"><div class="max">' + temp.tempsMax[i + 1] + '℃</div>/<div class="low">' + temp.tempsMin[i + 1] + '℃</div></div>'
-            table.rows[0].cells[i + 2].innerText = iday;
-            table.rows[1].cells[i + 2].innerHTML = week;
-            table.rows[2].cells[i + 3].innerText = weather[1].timeSeries[0].areas[0].pops[i + 2] + "%";
-            table.rows[3].cells[i + 3].innerHTML = itemp;
+        options = 0;
+        if (weather[1].timeSeries[0].timeDefines.length == 7) {
+            options = -1;
         }
+
+
 
     })
 

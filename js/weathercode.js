@@ -828,6 +828,5 @@ const codes = {
 }
 
 function whatcode(code) {
-    console.log("日本語:", codes[code][3], "English:", codes[code][4])
     return (codes[code][0])
 }
