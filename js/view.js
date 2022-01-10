@@ -150,6 +150,7 @@ function contents3() {
         table.rows[3].cells[1].innerHTML = '<div class="temp2"><div class="max">' + max1 + '℃</div>/<div class="low">' + low1 + '℃</div></div>'
         table.rows[2].cells[1].innerHTML = weather[0].timeSeries[1].areas[0].pops[0] + "%";
         table.rows[2].cells[2].innerHTML = weather[0].timeSeries[1].areas[0].pops[4] + "%";
+
         table.rows[1].cells[1].innerHTML = '<img src="./img/Icons/' + whatcode(weather[0].timeSeries[0].areas[0].weatherCodes[0]) + '">';
         table.rows[3].cells[2].innerHTML = '<div class="temp2"><div class="max">' + max2 + '℃</div>/<div class="low">' + low2 + '℃</div></div>';
 
@@ -161,14 +162,14 @@ function contents3() {
 
         console.log(Datetime)
 
-        for (i = 0; i < 7; i++) {
+        for (i = 0; i < 8; i++) {
             let week = '<img src="./img/Icons/' + whatcode(weather[1].timeSeries[0].areas[0].weatherCodes[i]) + '">';
             let iday = Number(weather[1].timeSeries[0].timeDefines[i].substr(8, 2)) + "日"
             let itemp = '<div class="temp2"><div class="max">' + temp.tempsMax[i + 1] + '℃</div>/<div class="low">' + temp.tempsMin[i + 1] + '℃</div></div>'
-            table.rows[0].cells[i + 2].innerText = iday;
-            table.rows[1].cells[i + 2].innerHTML = week;
+            table.rows[0].cells[i + 1].innerText = iday;
+            table.rows[1].cells[i + 1].innerHTML = week;
             table.rows[2].cells[i + 3].innerText = weather[1].timeSeries[0].areas[0].pops[i + 1] + "%";
-            table.rows[3].cells[i + 3].innerHTML = itemp;
+            table.rows[3].cells[i + 2].innerHTML = itemp;
         }
 
     })
