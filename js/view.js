@@ -129,7 +129,6 @@ function contents1() {
         console.log(weather, today, todaycode, tomorrow, tomorrowcode, day_after_tomorrow);
         console.log("=");
         console.log(average_max, average_low, Datetime, temp, Defines2, weather);
-        asynchronousFunc();
     })
 
 }
@@ -276,6 +275,75 @@ function contents4() {
         console.log("特別警報は" + high_warning + "////警報" + middle_warning + "////注意報" + low_warning);
     })
 
+
+}
+
+function contents5() {
+
+    let google = Googlemap1();
+    Promise.resolve(google).then(function(value) {
+        // ここでプロミスオブジェクトの中身をああだこうだする。
+        //処理出来る形にする
+
+        window.setTimeout(function() {
+            result = value
+            hiroshimaSummary = result.routes[0].summary
+            hiroshimaDuration = result.routes[0].legs[0].duration.value
+            hiroshimaTraffic = result.routes[0].legs[0].duration_in_traffic.value
+
+            hiroshimaMD = Math.floor(hiroshimaDuration % 3600 / 60)
+            hiroshimaM = Math.floor(hiroshimaTraffic % 3600 / 60)
+            hiroshimaH = Math.floor(hiroshimaTraffic / 3600)
+            hiroshimaSABUN = hiroshimaMD - hiroshimaM;
+            if (hiroshimaH == 0) {
+                document.getElementById('hiroshimatime').innerHTML = hiroshimaM + "分";
+            } else {
+                document.getElementById('hiroshimatime').innerHTML = hiroshimaH + "時間" + hiroshimaM + "分";
+            }
+
+            if (hiroshimaSABUN >= 0) {
+                document.getElementById('hiroshimadelay').innerHTML = "<div class='puls'>(-" + hiroshimaSABUN + "分)</div>";
+            } else {
+                document.getElementById('hiroshimadelay').innerHTML = "<div class='minus'>(+" + -(hiroshimaSABUN) + "分)</div>";
+            }
+        }, 2000)
+
+    })
+
+    google = Googlemap2();
+    Promise.resolve(google).then(function(value) {
+        // ここでプロミスオブジェクトの中身をああだこうだする。
+        //処理出来る形にする
+
+        window.setTimeout(function() {
+            result = value
+            Summary = result.routes[0].summary
+            Duration = result.routes[0].legs[0].duration.value
+            Traffic = result.routes[0].legs[0].duration_in_traffic.value
+
+
+
+            fukuyamaMD = Math.floor(Duration % 3600 / 60)
+            fukuyamaM = Math.floor(Traffic % 3600 / 60)
+            fukuyamaH = Math.floor(Traffic / 3600)
+            fukuyamaSABUN = fukuyamaMD - fukuyamaM;
+
+
+            if (fukuyamaH == 0) {
+                document.getElementById('fukuyamatime').innerHTML = fukuyamaM + "分";
+            } else {
+                document.getElementById('fukuyamatime').innerHTML = fukuyamaH + "時間" + fukuyamaM + "分";
+            }
+
+            if (fukuyamaSABUN >= 0) {
+                document.getElementById('fukuyamadelay').innerHTML = "<div class='puls'>(-" + fukuyamaSABUN + "分)</div>";
+            } else {
+                document.getElementById('fukuyamadelay').innerHTML = "<div class='minus'>(+" + -(fukuyamaSABUN) + "分)</div>";
+            }
+            console.log(fukuyamaH, fukuyamaM, fukuyamaSABUN, fukuyamaMD, )
+        }, 2000)
+    });
+    document.getElementById('todays6').innerHTML = new Date().getHours() + "時" + new Date().getMinutes() + "分時点";
 
 }
 

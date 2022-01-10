@@ -242,6 +242,7 @@ h2 {
     display: flex;
     justify-content: center;
     text-align: center;
+    width: 1280px;
 }
 
 .info {
@@ -259,7 +260,7 @@ h2 {
 .tohiroshima,
 .tofukuyama {
     font-size: 25px;
-    margin: 0px 70px 0px 70px;
+    margin: 0px 60px;
 }
 
 .tohiroshima p,
@@ -269,11 +270,21 @@ h2 {
 
 #hiroshimatime,
 #fukuyamatime {
-    margin-top: 10px;
-    font-size: 90px;
+    margin-top: 0px;
+    font-size: 100px;
 }
 
 #hiroshimadelay,
 #fukuyamadelay {
     margin-top: -20px;
+    font-size: 40px;
+}
+
+.puls {
+    color: rgb(0, 102, 255);
+}
+
+.minus {
+    color: red;
+    font-weight: bold;
 }

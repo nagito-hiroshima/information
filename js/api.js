@@ -96,7 +96,7 @@ function tempsDay() {
         });
 }
 
-function Googlemap() {
+function Googlemap1() {
     var directionsService = new google.maps.DirectionsService();
     let start = "伊藤忠エネクスグループ エネクスフリート株式会社 東広島西条店、〒739-0022 広島県東広島市西条町上三永１５０９";
     let end = "広島市役所、〒730-8586 広島県広島市中区国泰寺町１丁目６−３４";
@@ -110,16 +110,20 @@ function Googlemap() {
             trafficModel: "pessimistic",
         },
     };
-    directionsService.route(request, function(result, status) {
+    return directionsService.route(request, function(result, status) {
         if (status == 'OK') {
-            console.log(result.routes[0].summary, result.routes[0].legs[0].duration, result.routes[0].legs[0].duration_in_traffic);
+            return result
+
         }
     });
+}
 
-    start = "伊藤忠エネクスグループ エネクスフリート株式会社 東広島西条店、〒739-0022 広島県東広島市西条町上三永１５０９";
-    end = "福山駅、〒720-0066 広島県福山市三之丸町３０";
+function Googlemap2() {
+    var directionsService = new google.maps.DirectionsService();
+    let start = "伊藤忠エネクスグループ エネクスフリート株式会社 東広島西条店、〒739-0022 広島県東広島市西条町上三永１５０９";
+    let end = "福山駅、〒720-0066 広島県福山市三之丸町３０";
 
-    request = {
+    let request = {
         origin: start,
         destination: end,
         travelMode: 'DRIVING',
@@ -139,15 +143,16 @@ function Googlemap() {
 
         },
     };
-    directionsService.route(request, function(result2, status) {
+    return directionsService.route(request, function(result2, status) {
             if (status == 'OK') {
-                console.log(result2.routes[0].summary, result2.routes[0].legs[0].duration, result2.routes[0].legs[0].duration_in_traffic);
-                //Math.floor(Math.round(value/60)/ 60)時間
-                //Math.floor(Math.round(value/60)% 60)f分
+                return result2
+
             }
         }
 
     );
+    console.log(result)
+
 }
 
 function hinode() {
