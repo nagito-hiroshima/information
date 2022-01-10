@@ -70,7 +70,6 @@ function contents1() {
         window.setTimeout(function() {
             document.getElementById('max1').innerHTML = max1 + "℃"; //最高気温書き込み
             document.getElementById('low1').innerHTML = low1 + "℃"; //最低気温書き込み
-
         }, 200);
 
         console.log(low1, max1, "わー------------jflakjklas----ーーーーーい")
@@ -119,8 +118,10 @@ function contents1() {
 
         //今日の天気
         icon4.src = "./img/Icons/" + whatcode(todaycode); //天気コードを引数で呼び出し
-        document.getElementById('max4').innerHTML = max1 + "℃"; //最高気温書き込み
-        document.getElementById('low4').innerHTML = low1 + "℃"; //最低気温書き込み
+        window.setTimeout(function() {
+            document.getElementById('max4').innerHTML = max1 + "℃"; //最高気温書き込み
+            document.getElementById('low4').innerHTML = low1 + "℃"; //最低気温書き込み
+        }, 500);
         document.getElementById('wind').innerHTML = weather[0].timeSeries[0].areas[0].winds[0]
         document.getElementById('wave').innerHTML = weather[0].timeSeries[0].areas[0].waves[0]
         document.getElementById('pop').innerHTML = weather[0].timeSeries[1].areas[0].pops[0] + "%"
@@ -181,8 +182,13 @@ function contents3() {
         var table = document.getElementById('table');
 
         var collection = table.rows;
-        table.rows[3].cells[2].innerHTML = '<div class="temp2"><div class="max">' + weather[0].timeSeries[2].areas[0].temps[3] + '</div>/<div class="low">' + weather[0].timeSeries[2].areas[0].temps[2] + '</div></div>'
-        table.rows[3].cells[1].innerHTML = '<div class="temp2"><div class="max">' + max1 + '℃</div>/<div class="low">' + low1 + '℃</div></div>'
+        //table.rows[3].cells[2].innerHTML = '<div class="temp2"><div class="max">' + weather[0].timeSeries[2].areas[0].temps[3] + '</div>/<div class="low">' + weather[0].timeSeries[2].areas[0].temps[2] + '</div></div>'
+
+        window.setTimeout(function() {
+            table.rows[3].cells[1].innerHTML = '<div class="temp2"><div class="max">' + max1 + '℃</div>/<div class="low">' + low1 + '℃</div></div>'
+        }, 100)
+
+
         table.rows[2].cells[1].innerHTML = weather[0].timeSeries[1].areas[0].pops[0] + "%";
         table.rows[2].cells[2].innerHTML = weather[0].timeSeries[1].areas[0].pops[4] + "%";
 
@@ -197,11 +203,11 @@ function contents3() {
 
         console.log(Datetime)
 
-        for (i = 0; i < weather[1].timeSeries[0].timeDefines.length; i++) {
+        for (i = 0; i < weather[1].timeSeries[0].timeDefines.length + 1; i++) {
             let week = '<img src="./img/Icons/' + whatcode(weather[1].timeSeries[0].areas[0].weatherCodes[i]) + '">';
             let iday = Number(weather[1].timeSeries[0].timeDefines[i].substr(8, 2)) + "日"
             let itemp = '<div class="temp2"><div class="max">' + temp.tempsMax[i + 1] + '℃</div>/<div class="low">' + temp.tempsMin[i + 1] + '℃</div></div>'
-            table.rows[0].cells[i + 1].innerText = iday;
+            table.rows[0].cells[i + 2].innerText = iday;
             table.rows[1].cells[i + 2].innerHTML = week;
             table.rows[2].cells[i + 3].innerText = weather[1].timeSeries[0].areas[0].pops[i + 2] + "%";
             table.rows[3].cells[i + 3].innerHTML = itemp;
@@ -223,14 +229,18 @@ function contents4() {
         //処理出来る形にする
         warnings = value;
         console.log(warnings)
-        document.getElementById('warning_text').innerHTML = warnings.headlineText; //
+        if (warnings.headlineText == "注意報を解除します。") {
+            document.getElementById('warning_text').innerHTML = ""
+        } else {
+            document.getElementById('warning_text').innerHTML = warnings.headlineText; //
+        }
         let Datetime = (warnings.reportDatetime).substr(11, 5) //情報発表時間をフォーマット
         document.getElementById('publishingtime5').innerHTML = Datetime; //情報発表時間書き込み
         document.getElementById('todays5').innerHTML = (warnings.reportDatetime).substr(8, 2); //情報発表日時を書き込み
 
 
 
-        warnings = warnings.areaTypes[1].areas[0].warnings
+        warnings = warnings.areaTypes[1].areas[10].warnings
         if (warnings[0].status != "発表警報・注意報はなし") {
             $('.warning_none').css('display', 'none');
 
@@ -241,11 +251,11 @@ function contents4() {
                 if (warnings[i].status != "解除") {
                     let num = whatwarningcode(warnings[i].code)
                     if (num.indexOf("特別") > 0) {
-                        high_warning.push(num);
+                        high_warning.push(num.replace("特別警報", ""));
                     } else if (num.indexOf("警報") > -1) {
-                        middle_warning.push(num)
+                        middle_warning.push(num.replace("警報", ""))
                     } else {
-                        low_warning.push(num)
+                        low_warning.push(num.replace("注意報", ""))
                     }
 
 

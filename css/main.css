@@ -206,16 +206,74 @@ h2 {
 }
 
 #warning_text {
-    margin-top: 200px;
-    margin-left: 50px;
+    font-size: 35px;
+    margin-right: 40px;
+    margin-top: 40px;
+    margin-left: 40px;
+}
+
+.warning_none {
+    margin-top: 90px;
+    font-size: 90px;
+    text-align: center;
 }
 
 .level3,
 .level2,
 .level1 {
+    font-size: 35px;
     margin: 0px 0px 20px 20px;
-    height: 60px;
-    width: 100px;
+    height: 70px;
+    width: 200px;
     border-radius: 10px;
-    line-height: 60px;
+    line-height: 70px;
+}
+
+.copylight {
+    display: flex;
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    text-align: right;
+    font-size: 30px;
+}
+
+.toblock {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.info {
+    position: absolute;
+    bottom: 5px;
+    left: 7px;
+    font-size: 26px;
+}
+
+.toblock h3 {
+    margin-top: 20px;
+    font-size: 60px;
+}
+
+.tohiroshima,
+.tofukuyama {
+    font-size: 25px;
+    margin: 0px 70px 0px 70px;
+}
+
+.tohiroshima p,
+.tofukuyama p {
+    margin-top: -15px;
+}
+
+#hiroshimatime,
+#fukuyamatime {
+    margin-top: 10px;
+    font-size: 90px;
+}
+
+#hiroshimadelay,
+#fukuyamadelay {
+    margin-top: -20px;
 }
