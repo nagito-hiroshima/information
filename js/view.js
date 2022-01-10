@@ -5,22 +5,17 @@ function contents1() {
         // ここでプロミスオブジェクトの中身をああだこうだする。
         //処理出来る形にする
         weather = value;
-        //let Datetime = weather[0].reportDatetime //取得時間
         let Defines = weather[0].timeSeries[0].timeDefines //予報時間
         let weatherCode = weather[0].timeSeries[0].areas[0].weatherCodes; //三日分（波、天気、風）
-        let tempAverage = weather[1].tempAverage.areas[0]; //広島平年温度
         let temp = weather[1].timeSeries[1].areas[0]; //広島温度
         let Defines2 = weather[1].timeSeries[1].timeDefines //予報時間
-        console.log(weather)
 
-
-        if (weather[0].timeSeries[2].areas[0].temps.length == 4) {
-            console.log("それな")
+        if (weather[0].timeSeries[2].areas[0].temps.length == 4) { //温度が４つ返って来たとき
             max1 = weather[0].timeSeries[2].areas[0].temps[0] //今日の最高気温
             low1 = weather[0].timeSeries[2].areas[0].temps[1] //今日の最低気温
             max2 = weather[0].timeSeries[2].areas[0].temps[3] //明日の最高気温を取得
             low2 = weather[0].timeSeries[2].areas[0].temps[2] //明日の最低気温を取得
-            if (low1 == max1) { //今日の最低気温が取得できなかった時「-」を表示
+            if (low1 == max1) { //今日の最低気温が取得できなかった時
                 let weather = tempsDay();
                 Promise.resolve(weather).then(function(value) {
                     // ここでプロミスオブジェクトの中身をああだこうだする。
@@ -31,7 +26,7 @@ function contents1() {
                 })
 
             }
-            if (max1 == "") { //今日の気温を取得できなかった時「-」を表示
+            if (max1 == "") { //今日の気温を取得できなかった時
                 let weather = tempsDay();
                 Promise.resolve(weather).then(function(value) {
                     // ここでプロミスオブジェクトの中身をああだこうだする。
@@ -41,23 +36,23 @@ function contents1() {
                 })
             }
 
-        } else {
-            console.log("わかる")
+        } else { //通常４つの温度集以外の温度集がかえって来たとき
+
             let temps = tempsDay();
             console.log(temps.PromiseResult)
             Promise.resolve(temps).then(function(value) {
                 // ここでプロミスオブジェクトの中身をああだこうだする。
                 let keys_array = Object.keys(value);
                 let len = keys_array.length - 1
-                max1 = value[keys_array[len]].maxTemp[0]
-                low1 = value[keys_array[len]].minTemp[0]
-                console.log(low1, max1, "わーーーーーーい")
+                max1 = value[keys_array[len]].maxTemp[0] //今日の記録された最高気温を取得代入
+                low1 = value[keys_array[len]].minTemp[0] //今日の記録された最低気温を取得代入
                 return low1, max1
             })
-            console.log(low1, max1, "わー----------------ーーーーーい")
+
             max2 = weather[0].timeSeries[2].areas[0].temps[1] //明日の最高気温を取得
             low2 = weather[0].timeSeries[2].areas[0].temps[0] //明日の最低気温を取得
         }
+
         let max3 = temp.tempsMax[1] //明後日の最高気温を取得
         let low3 = temp.tempsMin[1] //明後日の最低気温を取得
 
@@ -72,36 +67,32 @@ function contents1() {
             document.getElementById('low1').innerHTML = low1 + "℃"; //最低気温書き込み
         }, 200);
 
-        console.log(low1, max1, "わー------------jflakjklas----ーーーーーい")
-
-
-
 
         //明日の表示処理
-        let tomorrow = Number(Defines[1].substr(8, 2));
-        document.getElementById('tomorrow').innerHTML = tomorrow + "日";
-        let tomorrowcode = weatherCode[1];
-        icon2.src = "./img/Icons/" + whatcode(tomorrowcode);
-        document.getElementById('max2').innerHTML = max2 + "℃";
-        document.getElementById('low2').innerHTML = low2 + "℃";
+        let tomorrow = Number(Defines[1].substr(8, 2)); //日にちを01=>1に変更
+        document.getElementById('tomorrow').innerHTML = tomorrow + "日"; //明日の日にちを表示
+        let tomorrowcode = weatherCode[1]; //明日の天気コードを宣言
+        icon2.src = "./img/Icons/" + whatcode(tomorrowcode); //天気コードから画像を参照表示
+        document.getElementById('max2').innerHTML = max2 + "℃"; //明日の最高気温
+        document.getElementById('low2').innerHTML = low2 + "℃"; //明日の最低気温
 
         //明後日の表示処理
-        if (Defines.length == 3) {
-            let day_after_tomorrow = Number(Defines[2].substr(8, 2));
-            document.getElementById('day_after_tomorrow').innerHTML = day_after_tomorrow + "日";
-            let day_after_tomorrowcode = weatherCode[2];
-            icon3.src = "./img/Icons/" + whatcode(day_after_tomorrowcode);
-            document.getElementById('max3').innerHTML = max3 + "℃";
-            document.getElementById('low3').innerHTML = low3 + "℃";
+        if (Defines.length == 3) { //取得した時間が３つ分しかない時（通常）
+            let day_after_tomorrow = Number(Defines[2].substr(8, 2)); //日にちを01=>1に変更
+            document.getElementById('day_after_tomorrow').innerHTML = day_after_tomorrow + "日"; //明後日の日にちを表示
+            let day_after_tomorrowcode = weatherCode[2]; //明後日の天気コードを宣言
+            icon3.src = "./img/Icons/" + whatcode(day_after_tomorrowcode); //天気コードから画像を参照表示
+            document.getElementById('max3').innerHTML = max3 + "℃"; //明後日の最高気温
+            document.getElementById('low3').innerHTML = low3 + "℃"; //明後日の最低気温
         } else {
-            let day_after_tomorrowcode = weather[1].timeSeries[0].areas[0].weatherCodes[2]
-            icon3.src = "./img/Icons/" + whatcode(day_after_tomorrowcode);
-            let day_after_tomorrow = tomorrow + 1;
-            document.getElementById('day_after_tomorrow').innerHTML = day_after_tomorrow + "日";
-            max3 = weather[1].timeSeries[1].areas[0].tempsMax[2]
-            low3 = weather[1].timeSeries[1].areas[0].tempsMin[2]
-            document.getElementById('max3').innerHTML = max3 + "℃";
-            document.getElementById('low3').innerHTML = low3 + "℃";
+            let day_after_tomorrowcode = weather[1].timeSeries[0].areas[0].weatherCodes[2] //一週間の天気から天気コードを取得
+            icon3.src = "./img/Icons/" + whatcode(day_after_tomorrowcode); //天気コードから画像を参照
+            let day_after_tomorrow = tomorrow + 1; //明後日の日にちを明日＋１にして表示（月末は上手く表示されない！！！！！！修正希望！！！！！！）
+            document.getElementById('day_after_tomorrow').innerHTML = day_after_tomorrow + "日"; //明後日の日にちを表示
+            max3 = weather[1].timeSeries[1].areas[0].tempsMax[2] //明後日の最高気温を１週間の天気から取得
+            low3 = weather[1].timeSeries[1].areas[0].tempsMin[2] //明後日の最低気温を１週間の天気から取得
+            document.getElementById('max3').innerHTML = max3 + "℃"; //明後日の最高気温
+            document.getElementById('low3').innerHTML = low3 + "℃"; //明後日の最低気温
 
         }
 
@@ -116,37 +107,32 @@ function contents1() {
         document.getElementById('publishingtime').innerHTML = Datetime; //情報発表時間書き込み
         document.getElementById('todays').innerHTML = Defines[0].substr(8, 2); //情報発表日時を書き込み
 
+
+        //今日の天気詳細の部分（contents2）
         //今日の天気
         icon4.src = "./img/Icons/" + whatcode(todaycode); //天気コードを引数で呼び出し
         window.setTimeout(function() {
             document.getElementById('max4').innerHTML = max1 + "℃"; //最高気温書き込み
             document.getElementById('low4').innerHTML = low1 + "℃"; //最低気温書き込み
         }, 500);
-        document.getElementById('wind').innerHTML = weather[0].timeSeries[0].areas[0].winds[0]
-        document.getElementById('wave').innerHTML = weather[0].timeSeries[0].areas[0].waves[0]
-        document.getElementById('pop').innerHTML = weather[0].timeSeries[1].areas[0].pops[0] + "%"
-
-        console.log(weather, today, todaycode, tomorrow, tomorrowcode, day_after_tomorrow);
-        console.log("=");
-        console.log(average_max, average_low, Datetime, temp, Defines2, weather);
+        document.getElementById('wind').innerHTML = weather[0].timeSeries[0].areas[0].winds[0] //今日の風向きを表示
+        document.getElementById('wave').innerHTML = weather[0].timeSeries[0].areas[0].waves[0] //今日の波の高さを表示
+        document.getElementById('pop').innerHTML = weather[0].timeSeries[1].areas[0].pops[0] + "%" //今日の降水確率を表示
     })
 
 }
 
 function contents2() {
     let weather = WEATHER_NOW();
-    Promise.resolve(weather).then(function(value) {
+    Promise.resolve(weather).then(function(weather) {
         // ここでプロミスオブジェクトの中身をああだこうだする。
         //処理出来る形にする
-        weather = value;
         //右下の情報源の表示処理
-        document.getElementById('texts').innerHTML = weather.text;
+        document.getElementById('texts').innerHTML = weather.text; //天気説明を代入
         let Datetime = (weather.reportDatetime).substr(11, 5) //情報発表時間をフォーマット
         document.getElementById('publishingtime2').innerHTML = Datetime; //情報発表時間書き込み
         document.getElementById('todays2').innerHTML = (weather.reportDatetime).substr(8, 2); //情報発表日時を書き込み
         document.getElementById('todays3').innerHTML = "(" + Number((weather.reportDatetime).substr(8, 2)) + "日)"; //情報発表日時を書き込み
-
-        console.log(weather.text)
     })
 }
 
