@@ -162,14 +162,14 @@ function contents3() {
 
         console.log(Datetime)
 
-        for (i = 0; i < 8; i++) {
+        for (i = 0; i < weather[1].timeSeries[0].timeDefines.length; i++) {
             let week = '<img src="./img/Icons/' + whatcode(weather[1].timeSeries[0].areas[0].weatherCodes[i]) + '">';
             let iday = Number(weather[1].timeSeries[0].timeDefines[i].substr(8, 2)) + "日"
             let itemp = '<div class="temp2"><div class="max">' + temp.tempsMax[i + 1] + '℃</div>/<div class="low">' + temp.tempsMin[i + 1] + '℃</div></div>'
-            table.rows[0].cells[i + 1].innerText = iday;
+            table.rows[0].cells[i+2].innerText = iday;
             table.rows[1].cells[i + 1].innerHTML = week;
             table.rows[2].cells[i + 3].innerText = weather[1].timeSeries[0].areas[0].pops[i + 1] + "%";
-            table.rows[3].cells[i + 2].innerHTML = itemp;
+            table.rows[3].cells[i + 3].innerHTML = itemp;
         }
 
     })
@@ -180,6 +180,8 @@ function contents4() {
     let high_warning = [],
         middle_warning = [],
         low_warning = [];
+        $("#warning").remove();
+
     let warnings = warning();
     Promise.resolve(warnings).then(function(value) {
         // ここでプロミスオブジェクトの中身をああだこうだする。
@@ -242,6 +244,6 @@ function plays(num) {
             music = new Audio('./audio/Phrase03-1.mp3');
     }
 
-    music.volume = .5;
+    music.volume = .8;
     music.play();
 }
