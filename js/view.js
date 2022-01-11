@@ -283,8 +283,10 @@ function contents5() {
                 document.getElementById('hiroshimatime').innerHTML = hiroshimaH + "時間" + hiroshimaM + "分";
             }
 
-            if (hiroshimaSABUN >= 0) {
+            if (hiroshimaSABUN > 0) {
                 document.getElementById('hiroshimadelay').innerHTML = "<div class='puls'>(-" + hiroshimaSABUN + "分)</div>";
+            } else if (hiroshimaSABUN == 0) {
+                document.getElementById('hiroshimadelay').innerHTML = "<div class='plus'>(通常通り)</div>";
             } else {
                 document.getElementById('hiroshimadelay').innerHTML = "<div class='minus'>(+" + -(hiroshimaSABUN) + "分)</div>";
             }
@@ -317,8 +319,11 @@ function contents5() {
                 document.getElementById('fukuyamatime').innerHTML = fukuyamaH + "時間" + fukuyamaM + "分";
             }
 
-            if (fukuyamaSABUN >= 0) {
+            if (fukuyamaSABUN > 0) {
                 document.getElementById('fukuyamadelay').innerHTML = "<div class='puls'>(-" + fukuyamaSABUN + "分)</div>";
+            } else if (fukuyamaSABUN == 0) {
+
+                document.getElementById('fukuyamadelay').innerHTML = "<div class='puls'>(通常通り)</div>";
             } else {
                 document.getElementById('fukuyamadelay').innerHTML = "<div class='minus'>(+" + -(fukuyamaSABUN) + "分)</div>";
             }
