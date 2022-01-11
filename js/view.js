@@ -137,6 +137,7 @@ function contents2() {
 }
 
 function contents3() {
+    var table = document.getElementById('table');
     let weather = WEATHER();
     Promise.resolve(weather).then(function(value) {
         // ここでプロミスオブジェクトの中身をああだこうだする。
@@ -159,21 +160,21 @@ function contents3() {
                     table.rows[3].cells[1].innerHTML = '<div class="temp2"><div class="max">' + max1 + '℃</div>/<div class="low">' + low1 + '℃</div></div>'
                 })
 
+                table.rows[2].cells[1].innerHTML = weather[0].timeSeries[1].areas[0].pops[0] + "%"; //今日の降水確率
+                //table.rows[2].cells[2].innerHTML = weather[0].timeSeries[1].areas[0].pops[4] + "%";
+
+
+                //table.rows[3].cells[2].innerHTML = '<div class="temp2"><div class="max">' + weather[0].timeSeries[2].areas[0].temps[3] + '</div>/<div class="low">' + weather[0].timeSeries[2].areas[0].temps[2] + '</div></div>'
+
+
+
+
+
 
             }
-            if (max1 == "") { //今日の気温を取得できなかった時「-」を表示
-                max1 = "-"
-            }
 
-        } else {
-            console.log("わかる")
-            max1 = "-";
-            low1 = "-";
-            max2 = weather[0].timeSeries[2].areas[0].temps[1] //明日の最高気温を取得
-            low2 = weather[0].timeSeries[2].areas[0].temps[0] //明日の最低気温を取得
         }
         let temp = weather[1].timeSeries[1].areas[0];
-        var table = document.getElementById('table');
 
         var collection = table.rows;
         console.log(weather)
@@ -188,29 +189,21 @@ function contents3() {
             console.log(i, week)
         }
 
-        table.rows[2].cells[1].innerHTML = weather[0].timeSeries[1].areas[0].pops[0] + "%"; //今日の降水確率
-        //table.rows[2].cells[2].innerHTML = weather[0].timeSeries[1].areas[0].pops[4] + "%";
-
-
-        //table.rows[3].cells[2].innerHTML = '<div class="temp2"><div class="max">' + weather[0].timeSeries[2].areas[0].temps[3] + '</div>/<div class="low">' + weather[0].timeSeries[2].areas[0].temps[2] + '</div></div>'
-
-
-
-        table.rows[1].cells[1].innerHTML = '<img src="./img/Icons/' + whatcode(weather[0].timeSeries[0].areas[0].weatherCodes[0]) + '">';
-        table.rows[3].cells[2].innerHTML = '<div class="temp2"><div class="max">' + max2 + '℃</div>/<div class="low">' + low2 + '℃</div></div>';
+        if (weather[0].timeSeries[2].areas[0].temps.length != 4) {
+            console.log(weather[1].timeSeries[0].timeDefines.length, "asdjalkdjaskldjkl")
+            console.log("わかる")
+            max2 = weather[0].timeSeries[2].areas[0].temps[1] //明日の最高気温を取得
+            low2 = weather[0].timeSeries[2].areas[0].temps[0] //明日の最低気温を取得
+                //table.rows[1].cells[1].innerHTML = '<img src="./img/Icons/' + whatcode(weather[0].timeSeries[0].areas[0].weatherCodes[0]) + '">';
+            table.rows[2].cells[1].innerHTML = weather[0].timeSeries[1].areas[0].pops[0] + "%"; //今日の降水確率
+            table.rows[3].cells[1].innerHTML = '<div class="temp2"><div class="max">' + max2 + '℃</div>/<div class="low">' + low2 + '℃</div></div>';
+        }
 
         console.log(max2, low2);
 
         let Datetime = (weather[0].reportDatetime).substr(11, 5) //情報発表時間をフォーマット
         document.getElementById('publishingtime4').innerHTML = Datetime; //情報発表時間書き込み
         document.getElementById('todays4').innerHTML = (weather[0].reportDatetime).substr(8, 2); //情報発表日時を書き込み
-
-        console.log(weather[1].timeSeries[0].timeDefines.length, "asdjalkdjaskldjkl")
-
-        options = 0;
-        if (weather[1].timeSeries[0].timeDefines.length == 7) {
-            options = -1;
-        }
 
 
 
@@ -327,8 +320,8 @@ function contents5() {
             Traffic = result.routes[0].legs[0].duration_in_traffic.value
 
 
-            fukuyamaMD = Math.floor(hiroshimaDuration / 60)
-            fukuyamaMM = Math.floor(hiroshimaTraffic / 60)
+            fukuyamaMD = Math.floor(Duration / 60)
+            fukuyamaMM = Math.floor(Traffic / 60)
             fukuyamaM = Math.floor(Traffic % 3600 / 60)
             fukuyamaH = Math.floor(Traffic / 3600)
             fukuyamaSABUN = fukuyamaMD - fukuyamaMM;
