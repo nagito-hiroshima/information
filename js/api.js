@@ -41,7 +41,6 @@ function tempsDay() { //記録された温度API
             return response.text(); //注意！JsonではなくTEXT形式
         })
         .then(function(time) {
-            console.log(time);
             day = (time.replace('-', "")).replace("-", "").substring(0, 8); //2022-01-02T00:00:00 ==>を20220102T00:00:00に変更
             time = time.substring(11, 13) //時間だけを取得（00）
 

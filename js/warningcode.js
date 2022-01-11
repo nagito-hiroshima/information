@@ -32,6 +32,5 @@ const Wcode = {
 }
 
 function whatwarningcode(code) {
-    console.log(Wcode.warninginfo[code])
     return (Wcode.warninginfo[code])
 }

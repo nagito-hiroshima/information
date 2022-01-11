@@ -22,7 +22,6 @@ function contents1() {
                     let keys_array = Object.keys(value);
                     let len = keys_array.length - 1
                     low1 = value[keys_array[len]].minTemp[0]
-                    console.log(low1)
                 })
 
             }
@@ -39,7 +38,6 @@ function contents1() {
         } else { //通常４つの温度集以外の温度集がかえって来たとき
 
             let temps = tempsDay();
-            console.log(temps.PromiseResult)
             Promise.resolve(temps).then(function(value) {
                 // ここでプロミスオブジェクトの中身をああだこうだする。
                 let keys_array = Object.keys(value);
@@ -144,7 +142,6 @@ function contents3() {
         //処理出来る形にする
         weather = value;
         if (weather[0].timeSeries[2].areas[0].temps.length == 4) {
-            console.log("それな")
             max1 = weather[0].timeSeries[2].areas[0].temps[0] //今日の最高気温
             low1 = weather[0].timeSeries[2].areas[0].temps[1] //今日の最低気温
             max2 = weather[0].timeSeries[2].areas[0].temps[3] //明日の最高気温を取得
@@ -175,9 +172,6 @@ function contents3() {
 
         }
         let temp = weather[1].timeSeries[1].areas[0];
-
-        var collection = table.rows;
-        console.log(weather)
         for (i = 0; i < weather[1].timeSeries[0].timeDefines.length; i++) {
             let week = '<img src="./img/Icons/' + whatcode(weather[1].timeSeries[0].areas[0].weatherCodes[i]) + '">';
             let iday = Number(weather[1].timeSeries[0].timeDefines[i].substr(8, 2)) + "日"
@@ -186,20 +180,15 @@ function contents3() {
             table.rows[1].cells[i + 1].innerHTML = week;
             table.rows[2].cells[i + 1].innerText = weather[1].timeSeries[0].areas[0].pops[i] + "%";
             table.rows[3].cells[i + 1].innerHTML = itemp;
-            console.log(i, week)
         }
 
         if (weather[0].timeSeries[2].areas[0].temps.length != 4) {
-            console.log(weather[1].timeSeries[0].timeDefines.length, "asdjalkdjaskldjkl")
-            console.log("わかる")
             max2 = weather[0].timeSeries[2].areas[0].temps[1] //明日の最高気温を取得
             low2 = weather[0].timeSeries[2].areas[0].temps[0] //明日の最低気温を取得
                 //table.rows[1].cells[1].innerHTML = '<img src="./img/Icons/' + whatcode(weather[0].timeSeries[0].areas[0].weatherCodes[0]) + '">';
             table.rows[2].cells[1].innerHTML = weather[0].timeSeries[1].areas[0].pops[0] + "%"; //今日の降水確率
             table.rows[3].cells[1].innerHTML = '<div class="temp2"><div class="max">' + max2 + '℃</div>/<div class="low">' + low2 + '℃</div></div>';
         }
-
-        console.log(max2, low2);
 
         let Datetime = (weather[0].reportDatetime).substr(11, 5) //情報発表時間をフォーマット
         document.getElementById('publishingtime4').innerHTML = Datetime; //情報発表時間書き込み
@@ -222,7 +211,6 @@ function contents4() {
         // ここでプロミスオブジェクトの中身をああだこうだする。
         //処理出来る形にする
         warnings = value;
-        console.log(warnings)
         if (warnings.headlineText == "注意報を解除します。") {
             document.getElementById('warning_text').innerHTML = ""
         } else {
@@ -266,8 +254,6 @@ function contents4() {
                 $("#warning").append("<div class=level1>" + low_warning[i] + "</div>")
             }
         }
-
-        console.log("特別警報は" + high_warning + "////警報" + middle_warning + "////注意報" + low_warning);
     })
 
 
@@ -291,8 +277,6 @@ function contents5() {
             hiroshimaM = Math.floor(hiroshimaTraffic % 3600 / 60)
             hiroshimaH = Math.floor(hiroshimaTraffic / 3600)
             hiroshimaSABUN = hiroshimaMD - hiroshimaMM;
-
-            console.log(hiroshimaH, hiroshimaM, hiroshimaMD, hiroshimaSABUN, hiroshimaMM)
             if (hiroshimaH == 0) {
                 document.getElementById('hiroshimatime').innerHTML = hiroshimaM + "分";
             } else {
@@ -338,7 +322,6 @@ function contents5() {
             } else {
                 document.getElementById('fukuyamadelay').innerHTML = "<div class='minus'>(+" + -(fukuyamaSABUN) + "分)</div>";
             }
-            console.log(fukuyamaH, fukuyamaM, fukuyamaSABUN, fukuyamaMD, )
         }, 2000)
     });
     document.getElementById('todays6').innerHTML = new Date().getHours() + "時" + new Date().getMinutes() + "分時点";
