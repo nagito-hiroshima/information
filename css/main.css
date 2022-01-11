@@ -41,6 +41,10 @@
     display: none;
 }
 
+.contents1 img {
+    height: 200px;
+}
+
 .footer {
     position: absolute;
     bottom: 0;
@@ -287,4 +291,27 @@ h2 {
 .minus {
     color: red;
     font-weight: bold;
+}
+
+.sumtime {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.sumtimes {
+    font-size: 50px;
+    width: 330px;
+    line-height: 300px;
+}
+
+#sumtimeout,
+#sumtimein {
+    line-height: 0;
+    margin-top: -70px;
+    font-size: 100px;
+}
+
+.sumtime img {
+    height: 300px;
 }

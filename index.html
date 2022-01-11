@@ -20,7 +20,7 @@
 
 </head>
 
-<body>
+<body id="click">
     <div class="container">
         <div class="title">
             <h1>運転手さん向け情報案内</h1>
@@ -73,7 +73,7 @@
                         <div class="day">
                             今日(
                             <div id="today">
-                                取得中
+                                ---
                             </div>
                             )
                         </div>
@@ -90,7 +90,7 @@
                         <div class="day">
                             明日(
                             <div id="tomorrow">
-                                取得中
+                                ---
                             </div>
                             )
                         </div>
@@ -106,7 +106,7 @@
                         <div class="day">
                             明後日(
                             <div id="day_after_tomorrow">
-                                取得中
+                                ---
                             </div>
                             )
                         </div>
@@ -297,6 +297,29 @@
                 </div>
 
             </div>
+            <div class="contents6">
+                <div class="subtitle">
+                    <h2>日の出・日の入り時刻</h2>
+                </div>
+                <div class="sumtime">
+                    <img src="./img/sumout.png">
+                    <div class="sumtimes">
+                        日の出
+                        <div id="sumtimeout">
+                            00:00
+                        </div>
+                    </div>
+                    <img src="./img/sumin.png">
+                    <div class="sumtimes">
+                        日の入り
+                        <div id="sumtimein">
+                            00:00
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
         </div>
     </div>
     <img src="./img/back.png" class="look">
@@ -305,50 +328,61 @@
     //ロック機能 パスワード
     const pass = "293832"
     Swal.fire({
-            icon: 'error',
-            title: '利用にはパスワードが必要です',
-            input: 'password',
-            inputAttributes: {
-                autocapitalize: 'off'
-            },
-            footer: "ドライバー向け情報案内<br>パスワードはプリンターに記載<br>（API使用につき利用制限）",
-            confirmButtonText: 'ログイン',
-            showLoaderOnConfirm: true,
-            showCancelButton: false,
-            backdrop: false,
-            preConfirm: (login) => {
-                if (login == pass) {
-                    $('.look').css('display', 'none');
+        icon: 'error',
+        title: '利用にはパスワードが必要です',
+        input: 'password',
+        inputAttributes: {
+            autocapitalize: 'off'
+        },
+        footer: "ドライバー向け情報案内<br>パスワードはプリンターに記載<br>（API使用につき利用制限）",
+        confirmButtonText: 'ログイン',
+        showLoaderOnConfirm: true,
+        showCancelButton: false,
+        backdrop: false,
+        preConfirm: (login) => {
+            if (login == pass) {
+                $('.look').css('display', 'none');
+            } else {
+                if (login != "") {
+                    Swal.showValidationMessage(
+                        'パスワードが違います: ' + login
+                    )
                 } else {
-                    if (login != "") {
-                        Swal.showValidationMessage(
-                            'パスワードが違います: ' + login
-                        )
-                    } else {
-                        Swal.showValidationMessage(
-                            'パスワードを入力してください')
-                    }
+                    Swal.showValidationMessage(
+                        'パスワードを入力してください')
                 }
-            },
-        }).then((result) => {
-            if (result.isConfirmed) {
-                tests();
-                plays(2);
-                Swal.fire({
-                    icon: 'success',
-                    title: '承認しました',
-                }).then((result) => {
-                    //初回起動コード！！！
-                    //!!!!!!!!!!
-                    //!!!!!!!!!
-
-
-
-                })
-                document.body.requestFullscreen();
             }
-        })
-        //tests();
+        },
+    }).then((result) => {
+        if (result.isConfirmed) {
+            start();
+            plays(2);
+            Swal.fire({
+                icon: 'success',
+                title: '承認しました',
+            }).then((result) => {
+                //初回起動コード！！！
+                //!!!!!!!!!!
+                //!!!!!!!!!
+                setTimeout(() => {
+                    document.getElementById("click").onclick = function(event) {
+                        var x = event.pageX; // 水平の位置座標
+                        var y = event.pageY; // 垂直の位置座標
+                        if (x > screen.width / 2) {
+                            //console.log("右")
+                            switchs();
+                        } else {
+                            //console.log("左")
+                            switchs("before");
+                        }
+                    }
+
+                }, 1000);
+
+            })
+            document.body.requestFullscreen();
+        }
+    })
 </script>
 
 </html>

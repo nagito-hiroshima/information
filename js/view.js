@@ -223,7 +223,7 @@ function contents4() {
 
 
         warnings = warnings.areaTypes[1].areas[10].warnings
-        if (warnings[0].status != "発表警報・注意報はなし") {
+        if (warnings[0].status != "発表警報・注意報はなし" && warnings[0].status != "解除") {
             $('.warning_none').css('display', 'none');
 
 
@@ -326,6 +326,14 @@ function contents5() {
     });
     document.getElementById('todays6').innerHTML = new Date().getHours() + "時" + new Date().getMinutes() + "分時点";
 
+}
+
+function contents6() {
+    const times = hinode();
+    let sumout = "'" + times.sunrise + "'"
+    let sumin = "'" + times.sunset + "'"
+    document.getElementById('sumtimeout').innerHTML = sumout.substring(17, 22);
+    document.getElementById('sumtimein').innerHTML = sumin.substring(17, 22);;
 }
 
 function plays(num) {

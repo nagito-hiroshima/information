@@ -129,7 +129,7 @@ function Googlemap2() { //福山行き交通状況API
 
 function hinode() { //日の入り
     var times = SunCalc.getTimes(new Date(), 34.4, 132.7);
-    console.log(times.sunrise, "日の出", times.sunset, "日の入り")
+    return times;
 }
 
 //hinode(); //日の出計算
