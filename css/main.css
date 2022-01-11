@@ -334,13 +334,14 @@
 
 .user {
     color: rgb(0, 0, 0);
-    position: absolute;
-    bottom: 25px;
-    left: 340px;
     margin-top: 20px;
-    font-size: 20px;
+    font-size: 15px;
 }
 
 a {
     color: rgb(16, 16, 214);
+}
+
+.pop {
+    text-align: center;
 }
