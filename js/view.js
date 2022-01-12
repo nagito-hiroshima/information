@@ -189,6 +189,9 @@ function contents3() {
             table.rows[2].cells[1].innerHTML = weather[0].timeSeries[1].areas[0].pops[0] + "%"; //今日の降水確率
             table.rows[3].cells[1].innerHTML = '<div class="temp2"><div class="max">' + max2 + '℃</div>/<div class="low">' + low2 + '℃</div></div>';
         }
+        if (table.rows[2].cells[1].innerText== "%"){
+            table.rows[2].cells[1].innerText = weather[0].timeSeries[1].areas[0].pops[0] + "%" //今日の降水確率を表示
+        }
 
         let Datetime = (weather[0].reportDatetime).substr(11, 5) //情報発表時間をフォーマット
         document.getElementById('publishingtime4').innerHTML = Datetime; //情報発表時間書き込み
