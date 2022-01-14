@@ -256,6 +256,8 @@ function contents4() {
             for (i = 0; i < low_warning.length; i++) {
                 $("#warning").append("<div class=level1>" + low_warning[i] + "</div>")
             }
+        }else {
+            $('.warning_none').css('display', 'block');
         }
     })
 
