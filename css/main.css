@@ -38,7 +38,8 @@
 .contents3,
 .contents4,
 .contents5,
-.contents6 {
+.contents6,
+.contents7 {
     display: none;
 }
 
@@ -343,5 +344,32 @@ a {
 }
 
 .pop {
+    text-align: center;
+}
+
+#custom{
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+}
+#custom_text{
+    font-size: 40px;
+    margin: 20px;
+}
+.box10{
+    height: 200px;
+    width: 500px;
+}
+.two-view{
+    margin-left: 20px;
+    display: flex;
+
+}
+img.box10{
+    height: 350px;
+}
+.center{
+    display: flex;
+    justify-content: center;
     text-align: center;
 }

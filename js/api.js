@@ -132,6 +132,22 @@ function hinode() { //日の入り
     return times;
 }
 
+function noname(){
+}
+
+function customview() {
+        let url = "https://sheets.googleapis.com/v4/spreadsheets/1_67fVa4HZoLkrv2HoVFisgrhlWoyvqjxlEUCJxGm5yo/values/%E8%A1%A8%E7%A4%BA%E5%86%85%E5%AE%B9?key=AIzaSyBn968aampm0LOIc6hxPnDm5KVFtUIGvb8";
+        return fetch(url)
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(custom) {
+                return custom
+            });
+
+
+}
+
 //hinode(); //日の出計算
 //WEATHER(); //天気API
 //Googlemap(); //GoogleAPI

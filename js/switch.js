@@ -8,7 +8,8 @@ function start() {
     setInterval(contents5, 900000); //GoogleAPIは有料の為１５分間隔で更新
 
     //$('.contents1').css('display', 'none');
-    //$('.contents6').css('display', 'block')
+    //$('.contents7').css('display', 'block');
+    //contents7();
 
 }
 
@@ -19,6 +20,7 @@ function load() {
     contents3(); //contents3...一週間の天気予報
     contents4(); //contents4...警報注意報
     contents6(); //contents6...日の入り日の出時刻
+    //contents7(); //contents7...カスタム表示エリア
 }
 
 function switchs(on) {
@@ -28,16 +30,13 @@ function switchs(on) {
             if (no == 0) {
                 no = 1
             } else {
-                no = 6
+                no = 7
             }
         } else {
             no = ((no - 2))
         }
     }
-
-
-
-    if (no > 6) {
+    if (no > 7) {
         no = 1
     }
 
@@ -49,6 +48,7 @@ function switchs(on) {
             $('.contents4').css('display', 'none');
             $('.contents5').css('display', 'none');
             $('.contents6').css('display', 'none');
+            $('.contents7').css('display', 'none');
             no++
             break
         case 2:
@@ -58,6 +58,7 @@ function switchs(on) {
             $('.contents4').css('display', 'none');
             $('.contents5').css('display', 'none');
             $('.contents6').css('display', 'none');
+            $('.contents7').css('display', 'none');
             no++
             break
 
@@ -68,7 +69,7 @@ function switchs(on) {
             $('.contents4').css('display', 'none');
             $('.contents5').css('display', 'none');
             $('.contents6').css('display', 'none');
-
+            $('.contents7').css('display', 'none');
             no++
             break
         case 4:
@@ -78,6 +79,7 @@ function switchs(on) {
             $('.contents4').css('display', 'block');
             $('.contents5').css('display', 'none');
             $('.contents6').css('display', 'none');
+            $('.contents7').css('display', 'none');
             no++
             break
         case 5:
@@ -87,6 +89,7 @@ function switchs(on) {
             $('.contents4').css('display', 'none');
             $('.contents5').css('display', 'block');
             $('.contents6').css('display', 'none');
+            $('.contents7').css('display', 'none');
             no++
             break
         case 6:
@@ -96,7 +99,13 @@ function switchs(on) {
             $('.contents4').css('display', 'none');
             $('.contents5').css('display', 'none');
             $('.contents6').css('display', 'block');
+            $('.contents7').css('display', 'none');
             no++
             break
+        case 7:
+            contents7(); //contents7...カスタム表示エリア
+            no++
+            break
+
     }
 }

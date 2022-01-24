@@ -346,6 +346,46 @@ function contents6() {
     document.getElementById('sumtimein').innerHTML = sumin.substring(17, 22);;
 }
 
+function contents7(){
+    let custom = customview();
+    Promise.resolve(custom).then(function(customs) {
+        
+        if(customs.majorDimension=="ROWS"&&customs.values[0][1]=="TRUE"){
+            $('.contents1').css('display', 'none');
+            $('.contents2').css('display', 'none');
+            $('.contents3').css('display', 'none');
+            $('.contents4').css('display', 'none');
+            $('.contents5').css('display', 'none');
+            $('.contents6').css('display', 'none');
+            $('.contents7').css('display', 'block');
+            if(customs.values[3].length==2){
+
+
+            document.getElementById('custom_area').innerHTML =' <div class="two-view"><div class="box10"id="custom_text"></div><img id="custom_img" class="box10"src="'+customs.values[3][1]+'"></div>'
+            document.getElementById('custom_title').innerHTML = customs.values[1][1];
+            document.getElementById('custom_text').innerHTML = customs.values[2][1];
+            document.getElementById('publishings').innerHTML = customs.values[4][1];
+            }else{
+                document.getElementById('custom_area').innerHTML ='<div class="center" id="custom_text"></div>'
+                document.getElementById('custom_title').innerHTML = customs.values[1][1];
+                document.getElementById('custom_text').innerHTML = customs.values[2][1];
+                document.getElementById('publishings').innerHTML = customs.values[4][1];
+                $('#custom_text').css('font-size', '60px');
+            }
+        }else
+        {document.getElementById('custom_area').innerHTML=""
+            $('.contents1').css('display', 'block')
+            $('.contents2').css('display', 'none');
+            $('.contents3').css('display', 'none');
+            $('.contents4').css('display', 'none');
+            $('.contents5').css('display', 'none');
+            $('.contents6').css('display', 'none');
+            $('.contents7').css('display', 'none');
+        }
+        
+    })
+}
+
 function plays(num) {
     let music;
     switch (num) {
